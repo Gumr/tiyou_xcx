@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "add-tips": "../../components/tips/tips"
+  },
+  "enablePullDownRefresh": true,
+  "backgroundTextStyle": "dark" 
+}

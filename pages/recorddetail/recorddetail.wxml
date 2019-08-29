@@ -1,0 +1,94 @@
+<!--pages/recorddetail/recorddetail.wxml-->
+<view class='detail'>
+  <!-- 卡片 -->
+  <view class='card_wrap {{status[reserveDetail.reserveStatus]}}'>
+    <view class='radius'></view>
+    <view class='card'>
+      <view class='circle circle1'></view>
+      <view class='circle circle2'></view>
+      <view class='address'>
+        <view class='name'>
+          <view>{{reserveDetail.courseName}}</view>
+          <text>{{reserveDetail.themeName ? reserveDetail.themeName : ''}}</text>
+        </view>
+        <view class='lesson' wx:if="{{reserveDetail.reserveStatus == '40'}}">已关闭</view>
+        <view class='lesson' wx:if="{{reserveDetail.reserveStatus == '30'}}">已取消</view>
+        <view class='lesson' wx:if="{{reserveDetail.reserveStatus == '20'}}">已上课</view>
+        <view class='lesson' wx:if="{{reserveDetail.reserveStatus == '10'}}">待上课</view>
+      </view>
+      <view class='infobot'>
+        <!-- 上 -->
+        <view class='message' bindtap='gomap' data-longitude='{{reserveDetail.longitude}}' data-latitude='{{reserveDetail.latitude}}'>
+          <view class='date'>
+            {{reserveDetail.time}} {{reserveDetail.classBeginTime}}-{{reserveDetail.classEndTime}}
+            <image class='icon' src='../../images/yuyue_icon_time.png'></image>
+          </view>
+          <view class='nick'>
+            {{reserveDetail.teachPlaceName}}
+            <image class='icon' src='../../images/yuyue_icon_time.png'></image>
+            <image class='arrow' src='../../images/user_icon_more.png'></image>
+          </view>
+          <view class='location'>{{reserveDetail.districtName}}{{reserveDetail.detailAddress}}</view>
+        </view>
+        <!-- 下 -->
+        <view class='progre'>
+          <view class='situation'>开班情况</view>
+          <progress active="true" percent="{{reserveDetail.reservePeople/reserveDetail.maxPeople*100}}" stroke-width="6" border-radius="6" activeColor="{{colors[reserveDetail.reserveStatus]}}" backgroundColor="#F0F0F0">
+            <view style="left:{{reserveDetail.reservePeople/reserveDetail.maxPeople*100 > 94 ? '94' : reserveDetail.reservePeople/reserveDetail.maxPeople*100}}%" class='schedule'>{{reserveDetail.reservePeople}}/{{reserveDetail.maxPeople}}</view>
+          </progress>
+          <view class='botinfo'>
+            <view>满{{reserveDetail.minPeople}}人开班</view>
+            <view>{{reserveDetail.maxPeople}}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 信息 -->
+  <view class='list'>
+    <view class='list_content'>
+      <view class='name'>预约方式</view>
+      <view class='cont'>{{reserveDetail.payType == '1' ? '课时' : '体验卡'}}</view>
+    </view>
+    <view class='list_content'>
+      <view class='name'>上课宝宝</view>
+      <view class='cont'>{{reserveDetail.studentName}}</view>
+    </view>
+  </view>
+
+  <!-- 预约说明 -->
+  <view class='explain'>
+    <text wx:if="{{reserveDetail.reserveStatus == '10'}}">预约说明\n如需取消课程，请提前3小时取消。</text>
+    <text wx:if="{{reserveDetail.reserveStatus == '20'}}">预约说明\n课程已开班，如需取消课程，请提前3小时取消。</text>
+    <text wx:if="{{reserveDetail.reserveStatus == '30'}}">预约说明\n课程已取消，请预约其他课程。</text>
+  </view>
+
+  <!-- 预约按钮 -->
+  <view class='invite_wrap' wx:if="{{reserveDetail.reserveStatus == '10'}}">
+    <view class='btn' bindtap='cancel'>取消</view>
+    <view class="invite" bindtap="invite">邀请好友上课</view>
+  </view>
+  <view class='reserve' wx:else>
+    <view class='btn' bindtap='cancel'>取消预约</view>
+  </view>
+
+  <!-- 海报 -->
+  <view class="hb" wx:if="{{hbShow == true}}" catchtap="close" style="padding-top:{{top}}px">
+    <view class='poste_box'>
+      <canvas id='canvas-container' canvas-id="myCanvas" style="width:590rpx;height:1048rpx;" />
+    </view>
+    <view class="save" catchtap="saveShareImg">保存至相册</view>
+  </view>
+
+  <!-- 引用子组件 -->
+  <dialog id='dialog' 
+    title='{{title}}' 
+    content='{{content}}' 
+    cancelText='{{cancelText}}' 
+    confirmText='{{confirmText}}' 
+    isShowCancelBtn='true' 
+    bind:cancelEvent="cancel_dialog" 
+    bind:confirmEvent="{{confirmEvent}}">
+  </dialog>
+</view>

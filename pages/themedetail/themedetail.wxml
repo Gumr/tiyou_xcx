@@ -1,0 +1,42 @@
+<!--pages/themedetail/themedetail.wxml-->
+<import src="../../wxParse/wxParse.wxml" />
+<view class='theme'>
+  <view class="wrap" id="wrap">
+    <swiper class='swiper' circular autoplay='true' bindchange="handleChangeSwiper">
+      <swiper-item wx:for="{{themeList.bannerImg}}">
+        <image src='{{item}}'></image>
+      </swiper-item>
+    </swiper>
+    <view class="dots" wx:if="{{themeList.bannerImg.length > 1}}">
+      <block wx:for="{{themeList.bannerImg}}" wx:key="unique">
+        <view class="dot{{index == currentIndex ? ' active' : ''}}"></view>
+      </block>
+    </view>
+  </view>
+
+  <!--  -->
+  <view class='content'>
+    <view class="tab {{tabFixed == true ? 'active' : ''}}">
+      <view bindtap='tab' class="intro tabname {{tabIndex == 0 ? 'active' : ''}}" data-classname='theme_info' data-index='0'>主题介绍</view>
+      <view bindtap='tab' class="lesson tabname {{tabIndex == 1 ? 'active' : ''}}" data-classname="relate" data-index='1'>相关课程</view>
+    </view>
+    <!-- 填补固定定位后节点 -->
+    <view class='remedy' wx:if="{{tabFixed == true}}"></view>
+
+
+    <view class="idea">
+      <view class="theme_info {{tabIndex == 0 ? 'active' : ''}}">
+        <template is="wxParse" data="{{wxParseData:article.nodes}}" />
+      </view>
+      <view class="relate {{tabIndex == 1 ? 'active' : ''}}">
+        <view class='reserve_list' wx:for="{{courseList}}" bindtap='detail' data-id='{{item.courseId}}'>
+          <image mode="aspectFit" class='cont' src='{{item.coverImg}}'></image>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<view class="share" bindtap="backHome" wx:if="{{shareTag == true}}">
+  <image src="../../images/back_home.png"></image>
+</view>

@@ -1,0 +1,29 @@
+<!--pages/edit/edit.wxml-->
+<view class='edit'>
+  <view class='box'>
+    <view class='name'>宝宝姓名</view>
+    <input class='enter' bindinput="bindKeyInput" maxlength="6" placeholder-style="color:#e2e2e2;" placeholder="请输入宝宝真实姓名" value="{{studentName}}" />
+  </view>
+  <view class='box'>
+    <view class='name'>与宝宝关系</view>
+    <input class='enter' bindinput="contact" placeholder-style="color:#e2e2e2;" placeholder="与宝宝关系" value='{{relation}}' />
+  </view>
+  <view class='box sex'>
+    <view class='name'>性别</view>
+    <picker mode="selector" bindchange="bindPickerChange" bindcancel="cancel" bindtap='selectsex' value="{{sexIndex}}" range="{{array}}">
+      <view class="value {{sexActive == true ? 'active' : ''}}">{{array[sexIndex] ? array[sexIndex] : '请选择性别'}}</view>
+    </picker>
+  </view>
+  <view class='box bir'>
+    <view class='name'>生日</view>
+    <picker mode="date" end="{{end}}" bindchange="bindDateChange" bindcancel="canceldate" bindtap='selectdate' value="{{date}}">
+      <view class="value {{dateActive == true ? 'active' : ''}}">{{date ? date : '请选择日期'}}</view>
+    </picker>
+  </view>
+
+  <!-- 按钮 -->
+  <view class='bot'>
+    <view class='add' bindtap='save'>保存</view>
+  </view>
+
+</view>

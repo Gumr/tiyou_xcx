@@ -1,0 +1,8 @@
+<!--pages/service/service.wxml-->
+<view class="service">
+  <view class="img">
+    <image  bindtap='previewImg' src="../../images/contact_kefu.png"></image>
+  </view>
+  <view class="wa">【体游科学实验室】公众号</view>
+  <view class="number" bindtap="copyTBL">一键复制搜索关注</view>
+</view>

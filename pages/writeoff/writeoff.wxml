@@ -1,0 +1,86 @@
+<!--pages/writeoff/writeoff.wxml-->
+<view class='writeoff {{status[lessonStatus]}}'>
+
+  <!-- 卡片 -->
+  <view class='card_wrap'>
+    <view class='radius'></view>
+    <view class='card'>
+      <view class='circle circle1'></view>
+      <view class='circle circle2'></view>
+      <view class='address'>
+        <view class='name'>
+          <view>{{detail.teachPlaceName}}</view>
+          <text>{{detail.districtName}}{{detail.detailAddress}}</text>
+          <image class='arrow' src='../../images/user_icon_more.png'></image>
+        </view>
+      </view>
+      <view class='infobot'>
+        <!-- 上 -->
+        <view class='message'>
+          <view class='date wrap'>
+            <view>{{detail.courseName}}</view>
+            <view>{{detail.themeName ? detail.themeName : ''}}</view>
+          </view>
+          <view class='mesa wrap'>
+            <view>{{detail.scheduleDate}}</view>
+            <view>{{detail.classBeginTime}} - {{detail.classEndTime}}</view>
+          </view>
+        </view>
+        <!-- 下 -->
+        <view class='progre'>
+          <view class='situation'>开班情况</view>
+          <progress active="true" percent="{{detail.reservePeople/detail.maxPeople*100}}" stroke-width="6" border-radius="6" activeColor="{{colors[lessonStatus]}}" backgroundColor="#F0F0F0">
+            <view style="left:{{detail.reservePeople/detail.maxPeople*100 > 94 ? '94' : detail.reservePeople/detail.maxPeople*100}}%" class='schedule'>{{detail.reservePeople}}/{{detail.maxPeople}}</view>
+          </progress>
+          <view class='botinfo'>
+            <view>满{{detail.minPeople}}人开班</view>
+            <view>{{detail.maxPeople}}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 上课宝宝 -->
+  <view class='baby'>
+    <view class='name'>上课宝宝</view>
+    <view class='wrap a'>
+      <view class="list {{item.reserveStatus =='20' || item.reserveStatus =='30' || item.reserveStatus =='40' ? 'yhx' : ''}}" wx:for="{{studentList}}" data-status='{{item.reserveStatus}}' data-id='{{item.reserveId}}' bindtap='select'>
+        <view class='left'>
+          <view class='sort' wx:if="{{item.reserveStatus =='10' && lessonStatus == '20'}}">
+            <image wx:if="{{item.checked == true}}" src='../../images/user_hexiao_sel.png'></image>
+            <image wx:else src='../../images/user_hexiao_nor.png'></image>
+          </view>
+          <view class='sort' wx:if="{{lessonStatus != '20' && index < 10 }}">0{{index+1}}</view>
+          <view class='sort' wx:if="{{lessonStatus != '20' && index > 10 }}">{{index+1}}</view>
+          <view class='sort' wx:if="{{item.reserveStatus =='20' && lessonStatus == '20' || item.reserveStatus =='30' && lessonStatus == '20'}}">
+           
+          </view>
+          <view class='nick'>{{item.studentName}}</view>
+        </view>
+        <view class='status' wx:if="{{item.reserveStatus =='10'}}">未签到</view>
+        <view class='status' wx:if="{{item.reserveStatus =='20'}}">已核销</view>
+        <view class='status' wx:if="{{item.reserveStatus =='30'}}">已取消</view>
+        <view class='status wqd' wx:if="{{item.reserveStatus =='40'}}">未签到</view>
+      </view>
+    </view>
+  </view>
+
+  <!--  -->
+  <view class='btn' wx:if="{{lessonStatus == '20'}}">
+    <view class='friend' bindtap='verify'>手动核销</view>
+  </view>
+
+  <!-- 引用子组件 -->
+  <dialog id='dialog' 
+    title='{{title}}' 
+    content='{{content}}' 
+    cancelText='{{cancelText}}' 
+    confirmText='{{confirmText}}' 
+    isShowCancelBtn='true' 
+    bind:cancelEvent="cancel" 
+    bind:confirmEvent="{{confirmEvent}}">
+  </dialog>
+
+
+</view>

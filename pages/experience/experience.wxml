@@ -1,0 +1,35 @@
+<!--pages/experience/experience.wxml-->
+<!-- 引入过滤器 -->
+<wxs module="filters" src="../../libs/filter/filter.wxs"></wxs>
+<view class='exprience'>
+  <view class="img">
+    <image class="share1" src="{{image_cache}}share1.png"></image>
+    <image class="share2" src="{{image_cache}}share2.png"></image>
+    <view class="info">
+      <image mode="aspectFit" src="{{giveUser.avatar}}"></image>
+      <view class="name">{{giveUser.nickName}}</view>
+      <!-- <view class="extra">赠送的科学实验课</view> -->
+    </view>
+  </view>
+  <view class="wrap">
+      <view class="list">
+        <view class="content" wx:for="{{list}}">
+          <image mode="aspectFit" src="{{item.avatar}}"></image>
+          <view class="right">
+            <view class="top">
+              <view class="name">{{item.nickName}}</view>
+              <view class="time">{{item.time}}</view>
+            </view>
+            <view class="bot">领取一张科学实验课体验卡</view>
+          </view>
+        </view>
+      </view>
+      <!-- 领取须知 -->
+      <view class="explain">
+        <view class="title">领取须知</view>
+        <text>· 每位用户至多可以领取1次试听课程。\n· 预约课程需使用领取课程的手机号。\n· 若用户预约成功后，取消预约，试听次数将会扣除。\n· 体游科学课试听课程仅限深圳用户领取并使用。\n· 体游亲子保留法律范围内允许的对活动的解释权。</text>
+      </view>
+    </view>
+</view>
+
+<view bindtap="yk" class="yk {{isIpx == true ? 'isIpx' : ''}}">立即约课</view>

@@ -1,0 +1,8 @@
+<template name="loading">
+  <view class="loading1">
+    <view style='margin-right:5rpx'>加载中</view>
+    <view class="demo1"></view>
+    <view class="demo1"></view>
+    <view class="demo1"></view>
+  </view>
+</template>

@@ -1,0 +1,34 @@
+<!--pages/lessondetail/lessondetail.wxml-->
+<import src="../../wxParse/wxParse.wxml"/>
+<view class='lesson'>
+  <view class='banner'>
+    <swiper class='swiper' circular autoplay='true' bindchange="handleChange">
+      <swiper-item wx:for="{{courseList.bannerImg}}">
+        <image src='{{item}}'></image>
+      </swiper-item>
+    </swiper>
+    <view class="dots" wx:if="{{courseList.bannerImg.length > 1}}">
+      <block wx:for="{{courseList.bannerImg}}" wx:key="unique">
+        <view class="dot{{index == currentIndex ? ' active' : ''}}"></view>
+      </block>
+    </view>
+  </view>
+
+  <!-- 名字 -->
+  <view class='name'>
+    <view>{{courseList.courseName}}</view>
+  </view>
+
+  <view class='content' wx:if="{{courseList.detail}}">
+    <template is="wxParse" data="{{wxParseData:article.nodes}}"/>
+  </view>
+
+  <!-- 预约 -->
+  <view class="btn {{isIpx == true ? 'isIpx' : ''}}" bindtap='reserveLessonDetail' data-id='{{courseList.courseId}}' data-title='{{courseList.courseName}}'>
+    <view class='friend'>预  约</view>
+  </view>
+</view>
+
+<view class="share" bindtap="backHome" wx:if="{{shareTag == true}}">
+  <image src="../../images/back_home.png"></image>
+</view>

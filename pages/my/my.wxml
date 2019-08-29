@@ -1,0 +1,140 @@
+<!--pages/my/my.wxml-->
+<!-- 引入过滤器 -->
+<wxs module="filters" src="../../libs/filter/filter.wxs"></wxs>
+<view class='mine'>
+  <!-- 用户信息 -->
+  <view class='user'>
+    <view class='user_box'>
+      <!-- 用户头像昵称 -->
+      <view class='tx'>
+        <image class='avatar' src="{{user.avatar ? user.avatar : '../../images/ty.jpg'}}"></image>
+        <view class='name'>
+          <view class='nick'>{{user.nickName ? user.nickName : '未登录'}}</view>
+          <view class='phone'>
+            {{user.phone ? filters.spacePhone(user.phone) : '****'}}
+            <view class="tycard" bindtap="gouse" wx:if="{{user.useExperienceCard > 0}}">
+              <view class="nouse">您有体验卡未使用哦~</view>
+              <view class="radius">
+                <view class="sj"></view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class='card' style="background:url('{{image_cache}}user_card.png') no-repeat;background-size:100% 100%;background-position:center">
+        <view class='top'>
+          <view class='record'>课时记录</view>
+          <view class='lesson' bindtap='recharge'>
+            <image src='{{image_cache}}user_btn_chongzhi.png'></image>
+            <view class='text'>充值课时</view>
+          </view>
+        </view>
+        <view class='bottom'>
+          <view class='remain'>
+            <view class='num' wx:if="{{user.lcoin}}">{{user.lcoin}}</view>
+            <view wx:else>0.0</view>
+            <view class='kind'>剩余课时</view>
+          </view>
+          <view class='remain learned'>
+            <view class='num' wx:if="{{user.consumeLcoin}}">{{user.consumeLcoin}}</view>
+            <view wx:else>0.0</view>
+            <view class='kind'>已学课时</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="box">
+    <view class="box_1" data-index="1" bindtap="select">
+      <image src="../../images/user_icon_dsk.png"></image>
+      <view class="name">待上课</view>
+    </view>
+    <view class="box_2" data-index="2" bindtap="select">
+      <image src="../../images/user_icon_ysk.png"></image>
+      <view class="name">已完成</view>
+    </view>
+    <view class="box_3" data-index="3" bindtap="select">
+      <image src="../../images/user_icon_yyjl.png"></image>
+      <view class="name">预约记录</view>
+      <image class="shadow" src="../../images/user_shadow.png"></image>
+    </view>
+  </view>
+
+  <!-- 列表 -->
+  <view class='list'>
+    <view class='list_box' bindtap='jump' data-name='baby'>
+      <view class='list_left'>
+        <image class='icon' src='../../images/user_icon_baby.png'></image>
+        <view class='baobao'>我的宝宝</view>
+      </view>
+      <image class='arrow' src='../../images/user_icon_more.png'></image>
+    </view>
+    <view class='list_box' bindtap='jump' data-name='exchange'>
+      <view class='list_left'>
+        <image class='icon' src='../../images/user_icon_duihuan.png'></image>
+        <view class='baobao'>兑换中心</view>
+      </view>
+      <image class='arrow' src='../../images/user_icon_more.png'></image>
+    </view>
+    <view class='list_box' bindtap='jump' data-name='order'>
+      <view class='list_left'>
+        <image class='icon' src='../../images/user_icon_dingdan.png'></image>
+        <view class='baobao'>我的订单</view>
+      </view>
+      <image class='arrow' src='../../images/user_icon_more.png'></image>
+    </view>
+    <view class='list_box' bindtap='jump' data-name='yueke'>
+      <view class='list_left'>
+        <image class='icon' src='../../images/user_icon_ruhe.png'></image>
+        <view class='baobao'>如何约课</view>
+      </view>
+      <image class='arrow' src='../../images/user_icon_more.png'></image>
+    </view>
+    <view class='list_box' bindtap='jump' data-name='kefu'>
+      <view class='list_left'>
+        <image class='icon' src='../../images/user_icon_kefu.png'></image>
+        <view class='baobao'>联系客服</view>
+      </view>
+      <image class='arrow' src='../../images/user_icon_more.png'></image>
+    </view>
+    <view class='list_box invite' bindtap='jump' data-name='invite'>
+      <view class="list_left">
+        <image class='icon' src='../../images/user_icon_yaoqing.png'></image>
+        <view class='baobao'>好友邀请</view>
+      </view>
+      <view class="sy">
+        <view class="yl" wx:if="{{user.giveExperienceCard > 0}}">邀请名额剩余 {{user.giveExperienceCard}} 次</view>
+        <image class='arrow' src='../../images/user_icon_more.png'></image>
+      </view>
+    </view>
+  </view>
+
+
+  <!-- 教师排课 -->
+  <view class='teacher' bindtap='jump' data-name='schedule' wx:if="{{user.teacherId}}">
+    <view class='list_left'>
+      <image class='icon' src='../../images/user_icon_paike.png'></image>
+      <view class='baobao'>教师排课</view>
+    </view>
+    <image class='arrow' src='../../images/user_icon_more.png'></image>
+  </view>
+
+</view>
+
+<!-- modal -->
+<view class='modal' wx:if="{{showLead}}">
+  <view class="wrap">
+    <swiper duration="400" indicator-dots="true" indicator-color="rgba(255, 180, 81, 1)" indicator-active-color="rgba(92, 149, 253, 1)">
+      <block wx:for="{{leadImgUrls}}">
+        <swiper-item>
+          <image src="{{item}}" class="slide-image" />
+        </swiper-item>
+      </block>
+    </swiper>
+  </view>
+  <!-- 知道了 -->
+  <view class='ok-btn' hover-class='btn-hover' bindtap='okHandler'>
+    <image src="../../images/close.png"></image>
+  </view>
+</view>

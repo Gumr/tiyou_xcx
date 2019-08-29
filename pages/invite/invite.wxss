@@ -1,0 +1,218 @@
+/* pages/invite/invite.wxss */
+
+page {
+  background: #fff;
+}
+
+.invite {
+}
+
+.img {
+  width: 100%;
+  height: 300rpx;
+}
+
+.head {
+  width: 100%;
+  height: 93rpx;
+  line-height: 93rpx;
+  font-size: 36rpx;
+  color: #333;
+  text-align: center;
+}
+
+.list {
+  width: 100%;
+  height: 80rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 0 30rpx 0 60rpx;
+}
+
+.list .left {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.list .left::before {
+  display: block;
+  content: '';
+  width: 4rpx;
+  height: 26rpx;
+  background: #ff6e52;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -30rpx;
+  margin: auto;
+}
+
+.list .left image {
+  width: 50rpx;
+  height: 50rpx;
+  border-radius: 50%;
+  margin-right: 19rpx;
+}
+
+.list .left .nick {
+  width: 170rpx;
+  height: 80rpx;
+  color: #333;
+  font-size: 30rpx;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+  line-height: 80rpx;
+}
+
+.list .left .time {
+  font-size: 22rpx;
+  color: rgba(153, 153, 153, 1);
+}
+
+.list .right {
+  width: 140rpx;
+  height: 38rpx;
+  line-height: 38rpx;
+  border-radius: 18rpx;
+  text-align: center;
+  background: #ff7b61;
+  color: #fff;
+  font-size: 24rpx;
+}
+
+.list:nth-of-type(2n+1) {
+  background: #fafafa;
+}
+
+.list:nth-of-type(2n) {
+  background: #fff;
+}
+
+/* 已体验 */
+
+.list.yty .left::before {
+  background: #ffb451;
+}
+
+.list.yty .right {
+  background: #ffb451;
+}
+
+/* 已领取 */
+
+.list.ylq .left::before {
+  background: #47d174;
+}
+
+.list.ylq .right {
+  background: #47d174;
+}
+
+/* 未领取 */
+
+.list.wlq .left::before {
+  background: #999;
+}
+
+.list.wlq .left .nick {
+  color: #999;
+}
+
+.list.wlq .right {
+  background: #fff;
+  color: #999;
+}
+
+.no{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #B2B2B2;
+  font-size: 28rpx;
+  box-sizing: border-box;
+  padding: 98rpx 0; 
+}
+.no image{
+  width: 300rpx;
+  height: 311rpx;
+  margin-bottom: 39rpx;
+}
+
+/* 邀请好友 */
+
+.btn {
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  height: 98rpx;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  border-top: 2rpx solid #e6e6e6;
+}
+
+.btn .friend {
+  width: 300rpx;
+  height: 74rpx;
+  line-height: 74rpx;
+  border-radius: 37rpx;
+  color: #fff;
+  font-size: 36rpx;
+  text-align: center;
+  box-sizing: border-box;
+  /* padding-top:  21rpx; */
+  margin: 0rpx 30rpx 0 0;
+  background: linear-gradient(rgba(77, 214, 114, 1) 0%, rgba(49, 189, 91, 1) 100%);
+  box-shadow: 0px -2rpx 2rpx 0px rgba(160, 96, 10, 0.2) inset,
+                0px 2rpx 2rpx 0px rgba(255, 255, 255, 0.5) inset,
+                0px 4rpx 4rpx 0px rgba(40, 142, 13, 0.5);
+}
+
+/* 海报 */
+
+.hb {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  background: rgba(0, 0, 0, 0.7);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.poste_box {
+  width: 630rpx;
+  height: 1088rpx;
+  background: rgba(255, 255, 255, 1);
+  border-radius: 20rpx;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hb .save {
+  width: 280rpx;
+  height: 66rpx;
+  margin: 12rpx auto 0;
+  line-height: 66rpx;
+  background: linear-gradient(0deg, rgba(245, 175, 83, 1) 0%, rgba(255, 204, 102, 1) 100%);
+  box-shadow: 0rpx 2rpx 6rpx 0rpx rgba(183, 32, 27, 0.4);
+  border-radius: 33rpx;
+  color: rgba(93, 57, 8, 1);
+  font-size: 30rpx;
+  text-align: center;
+}

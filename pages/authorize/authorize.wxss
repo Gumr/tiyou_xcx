@@ -1,0 +1,48 @@
+.authorize{
+  padding: 0;
+}
+page{
+  background: #fff;
+}
+.authorize{
+  padding: 354rpx 0 0;
+}
+.logo {
+  display: block;
+  width:414rpx;
+  height: 174rpx;
+  margin: 0 auto 0;
+}
+.mini-btn{
+  padding: 0;
+  border: none;
+  background: transparent;
+  width: 300rpx;
+  height: 74rpx;
+  border-radius: 37rpx;
+  margin: 434rpx auto 0;
+  position: relative;
+  background: linear-gradient(rgba(250, 195, 85, 1) 0%, rgba(250, 174, 75, 1) 100%);
+  box-shadow: 0px -2rpx 2rpx 0px rgba(160, 96, 10, 0.2) inset,
+                0px 2rpx 2rpx 0px rgba(255, 255, 255, 0.5) inset,
+                0px 4rpx 4rpx 0px rgba(230, 155, 69, 0.5);
+}
+/* .mini-btn image{
+  width: 300rpx;
+  height: 84rpx;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+} */
+.mini-btn text{
+  display: block;
+  width: 100%;
+  position: absolute;
+  font-size: 36rpx;
+  color: #fff;
+  text-align: center;
+  line-height: 74rpx;
+}

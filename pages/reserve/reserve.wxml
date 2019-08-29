@@ -1,0 +1,123 @@
+<!--pages/reservation/reservation.wxml-->
+<wxs module="filters" src="../../libs/filter/filter.wxs"></wxs>
+<view class="reservation">
+<!-- 筛选 -->
+    <view class="filter">
+      <!-- 教学点 时间段 -->
+      <view class="select {{selectIndex == 0 || selectIndex == 1 ? 'active' : ''}}">
+        <view class="selected location {{selectIndex == 0 ? 'active' : ''}}" data-index="0" bindtap="select">
+          <view class="name active" wx:if="{{teachPlaceId.length>1}}">{{teachPlaceId.length}}个教学点</view>
+          <view class="name extra active" wx:elif="{{teachPlaceId.length == 1}}">{{teachPlaceList[teachPlaceIndex[0]].teachPlaceName}}</view>
+          <view class="name extra dist active" wx:elif="{{teachPlaceId.length == 0 && districtIndex !== ''}}">{{districtList[districtIndex].name}}</view>
+          <view class="name" wx:else>教学点</view>
+          <view class="icon {{selectIndex == 0 ? 'active' : ''}}"></view>
+        </view>
+        <view class="selected time {{selectIndex == 1 ? 'active' : ''}}" data-index="1" bindtap="select">
+          <view class="name active" wx:if="{{classTimeRangeColl.length > 1}}">{{classTimeRangeColl.length}}个时间段</view>
+          <view class="name active" wx:elif="{{classTimeRangeColl.length == 1}}">{{classTimeRangeColl[0].classRangeBeginTime}} - {{classTimeRangeColl[0].classRangeEndTime}}</view>
+          <view class="name" wx:else>时间段</view>
+          <view class="icon {{selectIndex == 1 ? 'active' : ''}}"></view>
+        </view>
+      </view>
+    </view>
+  <view class="head rl">
+    <!-- 日历 -->
+    <view class="wrap {{tabFixed == true ? 'active' : ''}}">
+      <scroll-view class='weekList' scroll-x="true">
+        <view class="week {{enoughDate == item.fullDate ? 'active' : ''}}" bindtap='changeTab' data-date='{{item.fullDate}}' wx:for="{{dateList}}" data-current='{{index}}'>
+          <view class='c1'>{{item.week}}</view>
+          <view class='c2'>{{ item.day}}</view>
+          <view class='mk' wx:if="{{item.maxPeople && item.maxPeople == item.reservePeople}}">满课</view>
+          <view class='no' wx:if="{{!item.maxPeople}}">无</view>
+          <view class='cz' wx:if="{{item.maxPeople && item.maxPeople - item.reservePeople >= 5}}">充足</view>
+          <view class='remain' wx:if="{{item.maxPeople && item.maxPeople - item.reservePeople < 5 && item.maxPeople - item.reservePeople > 0}}">剩余{{item.maxPeople - item.reservePeople}}</view>
+        </view>
+      </scroll-view>
+    </view>
+  </view>
+  <!-- 列表 -->
+  <view class="schedule" wx:if="{{courseList.length>0}}">
+    <!-- 课程列表 -->
+    <view class="scheduleList" wx:for="{{courseList}}" wx:if="{{item.scheduleList.length > 0}}">
+      <view class="location" bindtap='navigation' data-index="{{index}}">
+        <view class="left">
+          <image src="../../images/home_icon_didian.png"></image>
+          <view class="name">{{item.teachPlaceName}}</view>
+        </view>
+        <view class="right">
+          <view class="distance">{{filters.toFixOne(item.distance/1000)}}km</view>
+          <image class="arrow" src="../../images/user_icon_more.png"></image>
+        </view>
+      </view>
+      <view class="wrap">
+        <view class="course" wx:for="{{item.scheduleList}}" wx:for-item="items">
+          <view class="head">
+            <image class="cover" src="{{items.courseLogoImg}}"></image>
+            <view class="middle">
+              <view class="name">{{items.courseName}}</view>
+              <view class="time">
+                <image src="../../images/yuyue_icon_time.png"></image>
+                <view class="timedate">{{filters.split(items.classBeginTime,':')[0]}}:{{filters.split(items.classBeginTime,':')[1]}} - {{filters.split(items.classEndTime,':')[0]}}:{{filters.split(items.classEndTime,':')[1]}}</view>
+              </view>
+              <view class="age">
+                <image src="../../images/yuyue_icon_baby.png"></image>
+                <view class="yearsold">推荐 {{items.minAge}} - {{items.maxPeople}}岁</view>
+              </view>
+            </view>
+          </view>
+          <view class="reserve">
+            <view class="time">
+              <view class="name">预约截止时间：</view>
+              <view class="sj">{{filters.split(items.scheduleDate,'-')[1]}}-{{filters.split(items.scheduleDate,'-')[2]}} {{filters.split(items.reserveEndTime,':')[0]}}:{{filters.split(items.reserveEndTime,':')[1]}}</view>
+            </view>
+            <view class="btn" data-id="{{items.scheduleId}}" bindtap="sure">预约</view>
+          </view>
+          <view class="icon">
+            <image src="../../images/tykxsys.png"></image>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class='nothing' wx:else>
+    <image src='{{image_cache}}yuyue_time_blank.png'></image>
+    <view>老师正在努力排课中~</view>
+  </view>
+</view>
+
+<!-- 弹窗 -->
+<view class="modal" wx:if="{{selectIndex == 0 || selectIndex == 1}}">
+  <!-- 地点 -->
+  <view class="place" wx:if="{{selectIndex == 0}}">
+    <view class="box">
+      <view class="list city">
+        <view class="city_name {{cityCode == item.code ? 'active' : ''}}" data-index="{{index}}" data-code="{{item.code}}" wx:for="{{cityList}}">{{item.name}}</view>
+      </view>
+      <!-- 区 -->
+      <view class="list area">
+        <view class="area_name {{selectDistrictIndex === '' ? 'active' : ''}}" data-index="" data-code="" bindtap="selectArea">不限</view>
+        <view class="area_name {{selectDistrictIndex === index ? 'active' : ''}}" bindtap="selectArea" data-index="{{index}}" data-code="{{item.code}}" wx:for="{{districtList}}">{{item.name}}</view>
+      </view>
+      <!-- 教学点 -->
+      <scroll-view scroll-y style="height: 440rpx;" class="list point">
+        <view class="point_name {{selectTeachIndex.length <= 0 ? 'active' : ''}}" data-teachplaceid="" data-index="" bindtap="selectPlace">不限</view>
+        <view class="point_name {{item.checked == true ? 'active' : ''}}" bindtap="selectPlace" data-index="{{index}}" data-teachplaceid="{{item.teachPlaceId}}" wx:for="{{teachPlaceList}}">{{item.teachPlaceName}}</view>
+      </scroll-view>
+    </view>
+    <view class="btn">
+      <button class="sure" bindtap="surePlace">确定</button>
+    </view>
+  </view>
+  <!-- 时间 -->
+  <view class="place timeselect" wx:if="{{selectIndex == 1}}">
+    <view class="timebox">
+      <view class="select {{selectTimeIndex.length == 0 ? 'active' : ''}}" bindtap="time" data-index="" data-start="" data-end="">不限</view>
+      <view class="select {{item.checked == true ? 'active' : ''}}" bindtap="time" data-index="{{index}}" data-start="{{item.classRangeBeginTime}}" data-end="{{item.classRangeEndTime}}" wx:for="{{timeList}}">{{item.classRangeBeginTime}} - {{item.classRangeEndTime}}</view>
+    </view>
+    <view class="btn">
+      <button class="sure" bindtap="sureTime">确定</button>
+    </view>
+  </view>
+  <!-- 点击空白取消 -->
+  <view class="cancel" bindtap="cancel"></view>
+</view>

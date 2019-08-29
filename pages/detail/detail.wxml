@@ -1,0 +1,91 @@
+<!--pages/detail/detail.wxml-->
+<view class='detail'>
+
+  <!-- 卡片 -->
+  <view class='card_wrap'>
+    <view class='radius'></view>
+    <view class='card'>
+      <view class='circle circle1'></view>
+      <view class='circle circle2'></view>
+      <view class='address'>
+        <view class='name'>
+          <view>{{lessonDetail.teachPlaceName}}</view>
+          <text>{{lessonDetail.districtName}}{{lessonDetail.detailAddress}}</text>
+        </view>
+        <view class='lesson'>消耗{{lessonDetail.lcoinPrice}}课时</view>
+      </view>
+      <view class='infobot'>
+        <!-- 上 -->
+        <view class='message'>
+          <view class='date wrap'>
+            <view>{{lessonDetail.scheduleDate}}</view>
+            <view>{{lessonDetail.classBeginTime}} - {{lessonDetail.classEndTime}}</view>
+          </view>
+          <view class='mesa wrap'>
+            <view>{{lessonDetail.courseName}}</view>
+            <view>{{lessonDetail.themeName ? lessonDetail.themeName : ''}}</view>
+          </view>
+        </view>
+        <!-- 下 -->
+        <view class='progre'>
+          <view class='situation'>开班情况</view>
+          <progress active="true" percent="{{lessonDetail.reservePeople/lessonDetail.maxPeople*100}}" stroke-width="6" border-radius="6" activeColor="#31BD5B" backgroundColor="#F0F0F0">
+            <view style="left:{{lessonDetail.reservePeople/lessonDetail.maxPeople*100 > 94 ? '94' : lessonDetail.reservePeople/lessonDetail.maxPeople*100}}%" class='schedule'>{{lessonDetail.reservePeople}}/{{lessonDetail.maxPeople}}</view>
+          </progress>
+          <view class='botinfo'>
+            <view>满{{lessonDetail.minPeople}}人开班</view>
+            <view>{{lessonDetail.maxPeople}}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 信息 -->
+  <view class='list'>
+    <view class='list_content'>
+      <view class='name'>拥有课时</view>
+      <view class='cont'>{{info.lcoin}}</view>
+    </view>
+    <view class='list_content'>
+      <view class='name'>预约方式</view>
+      <view class='cont'>
+        {{reserveType}}
+        <!-- <image class='arrow' src='../../images/user_icon_more.png'></image> -->
+      </view>
+    </view>
+    <view class='list_content' bindtap='select'>
+      <view class='name'>上课宝宝</view>
+      <view class='cont' wx:if="{{studentName}}">
+        {{studentName}}
+        <image class='arrow' src='../../images/user_icon_more.png'></image>
+      </view>
+      <view class='cont' wx:else>
+        选择宝宝
+        <image class='arrow' src='../../images/user_icon_more.png'></image>
+      </view>
+    </view>
+  </view>
+
+  <!-- 预约说明 -->
+  <view class='explain'>
+    <text>预约说明\n1.成团要求：该课程满{{lessonDetail.minPeople}}人开课；\n2.取消条款：活动开始前3小时即可取消；\n3.如未取消课程但又未到课，系统仍会扣除{{lessonDetail.lcoinPrice}}课时；</text>
+  </view>
+
+  <!-- 预约按钮 -->
+  <view class="reserve {{isIpx == true ? 'isIpx' : ''}}">
+    <view class='deplete'>消耗：
+      <text>{{lessonDetail.lcoinPrice}}课时</text>
+    </view>
+    <form class='btn' bindsubmit="reserveDetail" report-submit='true'>
+      <button form-type="submit">
+        确认预约
+      </button>
+    </form>
+    <!-- <view class='btn' bindtap='reserveDetail'>确认预约</view> -->
+  </view>
+
+  <!-- 引用子组件 -->
+  <dialog id='dialog' title='{{title}}' content='{{content}}' cancelText='{{cancelText}}' confirmText='{{confirmText}}' isShowCancelBtn='true' bind:cancelEvent="cancel" bind:confirmEvent="{{confirmEvent}}">
+  </dialog>
+</view>

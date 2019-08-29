@@ -1,0 +1,274 @@
+/* pages/detail/detail.wxss */
+page{
+  background: #fff;
+  overflow: hidden;
+}
+.detail{
+  width: 100%;
+}
+.card_wrap{
+  width: 100%;
+  position: relative;
+  overflow-x: hidden;
+  padding-bottom: 38rpx;
+}
+.radius{
+  width: 1200rpx;
+  height: 280rpx;
+  background: #FFB451;
+  border-radius: 0 0 50% 50%;
+  position: absolute;
+  top: 0;
+  left: -225rpx;
+}
+.card{
+  width: 690rpx;
+  height: 400rpx;
+  position: relative;
+  background: #fff;
+  top: 37rpx;
+  left: 0;
+  right: 0;
+  margin: auto;
+  border-radius: 20rpx;
+  box-shadow:0px 2rpx 0rpx 0rpx rgba(0, 0, 0, 0.1);
+}
+.circle{
+  position: absolute;
+  width: 25rpx;
+  height: 50rpx;
+  border-radius: 50rpx 0 0 50rpx;
+  background: #FFB451;
+}
+.circle1{
+  left: 0;
+  top: 115rpx;
+  transform: rotate(180deg)
+}
+.circle2{
+  right: 0;
+  top: 115rpx;
+}
+.address{
+  height: 150rpx;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+}
+.address::after{
+  display: block;
+  content: '';
+  width: 618rpx;
+  height: 0rpx;
+  border-bottom: 2rpx dashed #CCCCCC;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+}
+.address .name{
+  display: flex;
+  flex-direction: column;
+  margin: 36rpx 0 0 59rpx;
+}
+.address .name view:nth-of-type(1){
+  font-size: 30rpx;
+  color: #333333;
+  font-weight: bold;
+}
+.address .name text{
+  color: #666;
+  font-size: 20rpx;
+  margin-top: 25rpx;
+  line-height: 23rpx;
+  font-family:NotoSansHans-Light;
+}
+.address .lesson{
+  width: 171rpx;
+  height: 34rpx;
+  border: 2rpx solid #31BD5B;
+  border-right: none;
+  border-radius: 34rpx 0 0 34rpx;
+  color: #31BD5B;
+  font-size: 22rpx;
+  margin-top: 32rpx;
+  text-align: center;
+  line-height: 34rpx;
+}
+.card .infobot{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 250rpx;
+  background:rgba(71,209,116,0.06);
+  box-sizing: border-box;
+  padding-top: 29rpx;
+  border-radius: 0 0 20rpx 20rpx;
+} 
+.infobot .message{
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+.infobot .message .date{
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 70rpx;
+  border-right: 2rpx solid #CCCCCC;
+}
+.infobot .message .mesa{
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 70rpx;
+}
+.infobot .message .wrap view:nth-of-type(1){
+  font-size: 30rpx;
+  color: #333333;
+  font-weight: bold;
+  margin-bottom: 15rpx;
+}
+.infobot .message .wrap view:nth-of-type(2){
+  font-size: 20rpx;
+  color: #666666;
+}
+
+/* 进度条 */
+.progre{
+  width: 570rpx;
+  margin-top: 30rpx;
+  position: relative;
+}
+.situation{
+  font-size: 20rpx;
+  color: #333333;
+  font-weight: 400;
+  margin-bottom: 30rpx;
+}
+.botinfo{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  font-size: 20rpx;
+  color: #666;
+  margin-top: 12rpx;
+}
+progress{
+  position: relative;
+}
+.schedule{
+  position: absolute;
+  font-size: 20rpx;
+  color: #31BD5B;
+  left: 0;
+  bottom: 18rpx;
+  transition: all 3s ease;
+}
+.list{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 74rpx;
+}
+.list_content{
+  font-size: 30rpx;
+  box-sizing: border-box;
+  width: 690rpx;
+  border-bottom: 2rpx solid rgba(242, 242, 242, 1);
+  padding: 43rpx 31rpx 43rpx 55rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.list_content:last-of-type{
+  border-bottom: none;
+}
+.list_content .name{
+  color: #333333;
+  position: relative;
+}
+.list_content .name::before{
+  display: block;
+  content: '';
+  width: 6rpx;
+  height: 28rpx;
+  background: #FFB451;
+  border-radius: 3rpx;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -25rpx;
+  margin: auto;
+}
+.list_content .cont{
+  color: #666666;
+}
+.list_content:nth-of-type(3) .cont{
+  position: relative;
+  left: -47rpx;
+}
+.list_content .cont .arrow{
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: -47rpx;
+  margin: auto;
+  width: 17rpx;
+  height: 30rpx;
+}
+.explain{
+  font-size: 24rpx;
+  color: #999999;
+  line-height: 30rpx;
+  padding-left: 60rpx;
+  margin-top: 77rpx;
+}
+
+/* 预约按钮 */
+.reserve{
+  width: 100%;
+  box-sizing: border-box;
+  height: 98rpx;
+  border-top: 2rpx solid #E6E6E6;
+  position: fixed;
+  bottom: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 30rpx;
+  z-index: 99;
+}
+.reserve.isIpx{
+  height: 166rpx;
+  padding-bottom: 68rpx;
+}
+.reserve .deplete{
+  color: #333333;
+  font-size: 24rpx;
+  display: flex;
+  align-items: center;
+  margin-top: 45rpx;
+}
+.reserve .deplete text{
+  font-size: 36rpx;
+  color: #F53636;
+}
+.reserve .btn,.reserve .btn button{
+  width:300rpx;
+  height:74rpx;
+  border-radius: 37rpx;
+  color: #fff;
+  text-align: center;
+  /* margin-top: 10rpx; */
+  line-height: 74rpx;
+  background: linear-gradient(rgba(77, 214, 114, 1) 0%, rgba(49, 189, 91, 1) 100%);
+  box-shadow: 0px -2rpx 2rpx 0px rgba(160, 96, 10, 0.2) inset,
+              0px 2rpx 2rpx 0px rgba(255, 255, 255, 0.5) inset,
+              0px 4rpx 4rpx 0px rgba(40, 142, 13, 0.5);
+}

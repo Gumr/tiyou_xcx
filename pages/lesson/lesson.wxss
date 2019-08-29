@@ -1,0 +1,295 @@
+/* pages/lesson/lesson.wxss */
+.ad_banner{
+  padding: 20rpx 0;
+  background: #fff;
+  box-sizing: border-box;
+  border-bottom: 10rpx solid #F5F5F5;
+}
+.ad{
+  width: 750rpx;
+  height: 160rpx;
+  background-position: center;
+  margin: 0 auto;
+}
+/* 课程 */
+.content{
+  display: flex;
+  justify-content: space-between;
+}
+.address{
+  width: 260rpx;
+  background: #fff;
+  /* 回弹效果 */
+  -webkit-overflow-scrolling: touch;
+  box-sizing: border-box;
+  /* padding-bottom: 98rpx; */
+}
+.lesson_list{
+  width: 480rpx;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+}
+.address_list .title{
+  width: 260rpx;
+  height: 60rpx;
+  text-align: center;
+  line-height: 60rpx;
+  font-size: 30rpx;
+  color: #333;
+  background: #FFEDD6;
+}
+.address_list .shop .shop_name{
+  width: 260rpx;
+  height: 100rpx;
+  text-align: center;
+  line-height: 100rpx;
+  font-size: 30rpx;
+  color: #666;
+  position: relative;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+}
+.address_list .shop .shop_name.active{
+  transition: all 0s ease-in 0s;
+  color: #31BD5B;
+  position: relative;
+}
+.address_list .shop .shop_name.active::before{
+  display: block;
+  content: '';
+  width: 12rpx;
+  height: 100rpx;
+  background: #31BD5B;
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+}
+.address_list .shop .shop_name::after{
+  display: block;
+  content: '';
+  width: 220rpx;
+  height: 2rpx;
+  background: #F2F2F2;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  transform:scaleY(0.5);
+}
+.address_list .shop .shop_name:last-of-type:after{
+  height: 0;
+}
+
+/*  */
+.location{
+  width: 480rpx;
+  height: 160rpx;
+  box-sizing: border-box;
+  padding: 40rpx 0 0 40rpx;
+  background: #FFEDD6;
+  display: flex;
+}
+.location image{
+  width: 24rpx;
+  height: 24rpx;
+  margin-right: 15rpx;
+}
+.location .place{
+  width: 356rpx;
+  max-height: 90rpx;
+  font-size: 30rpx;
+  color: #333;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+}
+
+/*  */
+.shop_lesson{
+  /* overflow-y: scroll; */
+  /* 回弹效果 */
+  -webkit-overflow-scrolling: touch;
+}
+.indetail{
+  width: 100%;
+  height: 160rpx;
+  position: relative;
+  box-sizing: border-box;
+  padding: 28rpx 0 0 81rpx;
+  display: flex;
+  justify-content: space-between;
+}
+.indetail::after{
+  display: block;
+  content: '';
+  width: 430rpx;
+  height: 2rpx;
+  background: #F2F2F2;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  transform: scaleY(0.5);
+}
+scroll-view .indetail:last-of-type::after{
+  height: 0;
+  /* margin-bottom: 98rpx; */
+}
+.indetail .info{
+  width: 210rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  color: #666666;
+  font-size: 24rpx;
+}
+.indetail .info view:nth-of-type(1){
+  color: #666666;
+  font-size: 30rpx;
+  font-weight: bold;
+  position: relative;
+}
+.indetail .info view:nth-of-type(2){
+  margin: 20rpx 0 13rpx 0;
+  position: relative;
+}
+.indetail .info view:nth-of-type(3){
+  height: 24rpx;
+  position: relative;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  /* overflow: hidden; */
+}
+.indetail .info view .icon{
+  position: absolute;
+  left: -40rpx;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  display: block;
+  content: '';
+  width: 24rpx;
+  height: 24rpx;
+}
+
+.limit{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  font-size: 20rpx;
+}
+.limit .radius{
+  width: 108rpx;
+  height: 30rpx;
+  border: 1rpx solid #FFB451;
+  border-right: none;
+  border-radius: 15rpx 0 0 15rpx;
+  text-align: center;
+  line-height: 30rpx;
+  color: #FFB451;
+  margin-bottom: 54rpx;
+}
+.limit .num{
+  display: flex;
+  margin-right: 29rpx;
+}
+.limit .num view:nth-of-type(1){
+  color: #666;
+}
+.limit .num view:nth-of-type(2){
+  color: #31BD5B;
+}
+.limit .num.active view:nth-of-type(2){
+  color: #C73838;
+}
+.indetail.active::before{
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  display: block;
+  content: '';
+  width: 12rpx;
+  height: 160rpx;
+  background: #31BD5B;
+}
+.indetail.active .info view{
+  color: #31BD5B;
+}
+.tab{
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 98rpx;
+  background: #fff;
+  border-top: 2rpx solid #E6E6E6;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 0 30rpx;
+}
+.tab .tab-l{
+  display: flex;
+  align-items: center;
+  margin-top: 15rpx;
+}
+.tab .tab-l view:nth-of-type(1){
+  font-size: 30rpx;
+  color: #333;
+  margin-right: 21rpx;
+}
+.tab .tab-l view:nth-of-type(2){
+  color: #666666;
+  font-size: 24rpx;
+}
+.tab .btn{
+  width: 300rpx;
+  height: 74rpx;
+  border-radius: 37rpx;
+  box-sizing: border-box;
+  color: #fff;
+  font-size: 36rpx;
+  text-align: center;
+  line-height: 74rpx;
+  box-sizing: border-box;
+  /* padding-top:  21rpx; */
+  /* margin-top:10rpx; */
+  background: linear-gradient(rgba(77, 214, 114, 1) 0%, rgba(49, 189, 91, 1) 100%);
+  box-shadow: 0px -2rpx 2rpx 0px rgba(160, 96, 10, 0.2) inset,
+              0px 2rpx 2rpx 0px rgba(255, 255, 255, 0.5) inset,
+              0px 4rpx 4rpx 0px rgba(40, 142, 13, 0.5);
+}
+.no{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #B2B2B2;
+  font-size: 28rpx;
+  box-sizing: border-box;
+  padding-bottom: 98rpx; 
+}
+.no image{
+  width: 300rpx;
+  height: 311rpx;
+  margin-bottom: 39rpx;
+}
+
+/* 适配 */
+.tab.isIpx{
+  height: 166rpx;
+  padding-bottom: 68rpx;
+}

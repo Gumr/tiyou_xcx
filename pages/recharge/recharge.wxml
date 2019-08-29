@@ -1,0 +1,49 @@
+<!--pages/recharge/recharge.wxml-->
+<!-- 引入过滤器 -->
+<wxs module="filters" src="../../libs/filter/filter.wxs"></wxs>
+<view class='recharge'>
+  <!-- <view class='banner'>
+    <image src=''></image>
+  </view> -->
+  <!-- 充值 -->
+  <view class='recharge_box'>
+    <view class="card {{rechargeGoodsId == item.rechargeGoodsId ? 'active' : ''}}" wx:for="{{rechargeList}}" bindtap='select' data-id='{{item.rechargeGoodsId}}' data-total='{{item.price}}'>
+      <image mode="aspectFit" class='list' src='{{item.coverImg}}'></image>
+      <image mode="aspectFit" class='tag' wx:if="{{item.lcoin == 18}}" src='{{image_cache}}public_lab_cztj.png'></image>
+      <image mode="aspectFit" class='tag' wx:if="{{item.lcoin == 52}}" src='{{image_cache}}public_lab_xsth.png'></image>
+    </view>
+  </view>
+
+  <!-- 课时余额 -->
+  <view class='remain'>
+    <view class='name'>课时余额</view>
+    <view class='yue'>{{user.lcoin}}</view>
+  </view>
+
+  <!-- 充值说明 -->
+  <view class='legend'>
+    <view class='name'>充值说明</view>
+    <text>· 充值成功，到账可能会有一定延迟，请耐心等待\n</text>
+  </view>
+
+  <!-- 按钮 -->
+  <view class="bot {{isIpx == true ? 'isIpx' : ''}}">
+    <view class='bot_le'>
+      <view class="agreement">
+        <view class="icon" bindtap='agreement'>
+          <image wx:if="{{agreement == true}}" src='../../images/public_btn_yes.png'></image>
+          <image wx:else src='../../images/public_btn_no.png'></image>
+        </view>
+        <view class='xy' bindtap="xy">同意《科学实验室购买服务协议》</view>
+      </view>
+      <view class='pay'>实付：
+        <text class='price'>¥ {{filters.toFix(total)}}</text>
+      </view>
+    </view>
+    <view class="btn {{canPay == false ? 'active' : ''}}" bindtap='recharge'>立即充值</view>
+  </view>
+</view>
+
+<view class="share" bindtap="backHome" wx:if="{{shareTag == true}}">
+  <image src="../../images/back_home.png"></image>
+</view>

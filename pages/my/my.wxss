@@ -1,0 +1,400 @@
+/* pages/my/my.wxss */
+
+page {
+  background: rgba(245, 245, 245, 1);
+}
+
+.mine {
+  overflow: hidden;
+}
+
+.user {
+  width: 1500rpx;
+  height: 398rpx;
+  background: #ffb451;
+  border-radius: 0 0 50% 50%;
+  position: relative;
+  left: -375rpx;
+  overflow: hidden;
+}
+
+.user .user_box {
+  width: 750rpx;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  box-sizing: border-box;
+  padding-top: 33rpx;
+}
+
+.user_box .tx {
+  display: flex;
+  align-items: center;
+  margin: 0rpx 30rpx;
+  color: #fff;
+  margin-bottom: 34rpx;
+}
+
+.user_box .tx .avatar {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+  margin-right: 31rpx;
+}
+
+.user_box .tx .name {
+  display: flex;
+  flex-direction: column;
+}
+
+.user_box .tx .name .nick {
+  font-size: 36rpx;
+  width: 288rpx;
+  height: 36rpx;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+}
+
+.user_box .tx .name .phone {
+  font-size: 24rpx;
+  margin-top: 15rpx;
+  position: relative;
+}
+
+.tx .tycard {
+  position: absolute;
+  left: 70%;
+  top: 0;
+  margin: auto;
+  width: 340rpx;
+  height: 52rpx;
+  background: rgba(51, 51, 51, 1);
+  border-radius: 26rpx;
+  display: flex;
+  align-items: center;
+}
+
+.tycard .nouse {
+  color: rgba(255, 246, 204, 1);
+  font-size: 26rpx;
+  margin: 0 14rpx 0 25rpx;
+}
+
+.tycard .radius {
+  width: 44rpx;
+  height: 44rpx;
+  background: rgba(255, 180, 81, 1);
+  border-radius: 50%;
+  position: relative;
+}
+
+.tycard .radius .sj {
+  width: 0rpx;
+  height: 0rpx;
+  border-left: 13rpx solid #333;
+  border-top: 13rpx solid transparent;
+  border-bottom: 13rpx solid transparent;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 2rpx;
+  right: 0;
+  margin: auto;
+}
+
+.card {
+  width: 698rpx;
+  height: 362rpx;
+  margin: 0 auto 0;
+  position: relative;
+  box-sizing: border-box;
+  padding-top: 25rpx;
+}
+
+.card .top {
+  display: flex;
+  align-items: center;
+  color: #fff;
+  font-size: 24rpx;
+}
+
+.card .top .record {
+  margin: 0 223rpx 0 192rpx;
+  position: relative;
+}
+
+.card .top .record::before {
+  content: '';
+  width: 2rpx;
+  height: 24rpx;
+  background: #fff;
+  position: absolute;
+  left: -18rpx;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+}
+
+.card .top .lesson {
+  width: 162rpx;
+  height: 53rpx;
+  position: relative;
+}
+
+.card .top .lesson .text {
+  position: absolute;
+  width: 162rpx;
+  height: 53rpx;
+  line-height: 48rpx;
+  font-size: 24rpx;
+  color: #333;
+  box-sizing: border-box;
+  padding-left: 23rpx;
+}
+
+.card .top .lesson image {
+  position: absolute;
+  width: 162rpx;
+  height: 53rpx;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+}
+
+.bottom {
+  display: flex;
+  justify-content: center;
+  margin-top: 33rpx;
+}
+
+.bottom .remain {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #fff;
+  font-size: 48rpx;
+}
+
+.bottom .remain .kind {
+  font-size: 20rpx;
+  color: #cbcbcb;
+  margin-top: 10rpx;
+}
+
+.bottom .learned {
+  margin-left: 270rpx;
+}
+
+/* 列表 */
+
+.list {
+  width: 690rpx;
+  box-sizing: border-box;
+  margin: 30rpx auto 20rpx;
+  background: #fff;
+  padding: 0rpx 0 0 0rpx;
+  border-radius: 12rpx;
+}
+
+.list .list_box {
+  padding: 40rpx 40rpx 40rpx 95rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 30rpx;
+  color: #333;
+  position: relative;
+}
+
+.list .list_box:first-of-type {
+  padding-top: 44rpx;
+}
+
+.list .list_box:last-of-type {
+  padding-bottom: 44rpx;
+  border-radius: 0rpx 0rpx 12rpx 12rpx;
+}
+
+.list .list_box::after {
+  display: block;
+  content: '';
+  width: 595rpx;
+  height: 2rpx;
+  background: rgba(242, 242, 242, 1);
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  transform: scaleY(0.5);
+}
+
+.list .list_box:last-of-type::after {
+  width: 0;
+  height: 0;
+  /* border-bottom: none; */
+}
+
+.list .list_box .list_left {
+  position: relative;
+}
+
+.list .list_box .list_left .icon {
+  width: 36rpx;
+  height: 36rpx;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -56rpx;
+  margin: auto;
+}
+
+.list .list_box .arrow {
+  width: 17rpx;
+  height: 30rpx;
+}
+
+.teacher {
+  width: 690rpx;
+  background: #fff;
+  border-radius: 12rpx;
+  box-sizing: border-box;
+  padding: 30rpx 40rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 auto 78rpx;
+  font-size: 30rpx;
+  color: #333;
+}
+
+.teacher .list_left {
+  display: flex;
+  align-items: center;
+}
+
+.teacher .list_left .icon {
+  width: 36rpx;
+  height: 36rpx;
+  margin-right: 19rpx;
+}
+
+.teacher .arrow {
+  width: 17rpx;
+  height: 30rpx;
+}
+
+.list_box.invite {
+  background: rgb(255, 255, 255);
+  margin-bottom: 20rpx;
+}
+
+.list_box.invite .sy {
+  display: flex;
+  align-items: center;
+}
+
+.list_box.invite .sy .yl {
+  font-size: 26rpx;
+  color: #999;
+  opacity: 1;
+  margin-right: 34rpx;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 999;
+  margin: auto;
+  background-color: rgba(0, 0, 0, 0.77);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal swiper {
+  width: 646rpx;
+  height: 998rpx;
+  position: initial;
+  margin-left: 37rpx;
+}
+
+.modal swiper image {
+  width: 646rpx;
+  height: 998rpx;
+}
+
+.ok-btn {
+  width: 86rpx;
+  margin: 27rpx auto 0;
+}
+
+.ok-btn image {
+  width: 86rpx;
+  height: 86rpx;
+}
+
+/*  */
+
+.box {
+  width: 690rpx;
+  height: 160rpx;
+  background: rgba(255, 255, 255, 1);
+  border-radius: 12rpx;
+  margin: 20rpx auto;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 0 0 0 110rpx;
+}
+
+.box .box_1, .box .box_2, .box .box_3 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.box image {
+  width: 52rpx;
+  height: 52rpx;
+  margin: 0 0 16rpx 0;
+}
+
+.box .name {
+  font-size: 24rpx;
+  font-family: Noto Sans S Chinese;
+  font-weight: 400;
+  color: rgba(77, 77, 77, 1);
+}
+
+.box .box_1 {
+  margin-right: 129rpx;
+}
+
+.box .box_2 {
+  margin-right: 169rpx;
+}
+
+.box .box_3{
+  position: relative;
+}
+
+.box .box_3 .shadow {
+  width: 18rpx;
+  height: 120rpx;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -57rpx;
+  margin: auto;
+}

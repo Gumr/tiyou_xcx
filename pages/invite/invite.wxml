@@ -1,0 +1,34 @@
+<!--pages/invite/invite.wxml-->
+<view class='invite'>
+  <image class='img' src='{{image_cache}}invite.jpg' mode='widthFix'></image>
+  <view class='status'>
+    <view class='head'>· 已邀好友状态 ·</view>
+    <view class='wrap' wx:if="{{userList.length > 0}}">
+      <view class='list' wx:for="{{userList}}">
+        <view class='left'>
+          <image src='{{item.avatar}}'></image>
+          <view class='nick'>{{item.nickName}}</view>
+          <view class="time">{{item.time}} 领取</view>
+        </view>
+        <view class='right'>已领取</view>
+      </view>
+    </view>
+    <view class="no" wx:else>
+      <image src='{{image_cache}}yuyue_time_blank.png'></image>
+      <view>快来邀请亲朋好友吧~</view>
+    </view>
+  </view>
+
+  <!-- 邀请好友 -->
+  <view class="btn {{isIpx == true ? 'isIpx' : ''}}">
+    <view class='friend' bindtap="invite">邀请好友</view>
+  </view>
+
+  <!-- 海报 -->
+  <view class="hb" wx:if="{{hbShow == true}}" catchtap="close" style="padding-top:{{top}}px">
+    <view class='poste_box'>
+      <canvas id='canvas-container' canvas-id="myCanvas" style="width:590rpx;height:1048rpx;" />
+    </view>
+    <view class="save" catchtap="saveShareImg">保存至相册</view>
+  </view>
+</view>

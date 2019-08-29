@@ -1,0 +1,22 @@
+<!--pages/special/special.wxml-->
+<view class="specila">
+  <view class="wrap">
+    <view class="content item-{{index}}" wx:for="{{img}}">
+      <image style="display: {{index < __LAZT_LOAD_COUNT + 1 ? 'block' : 'none'}}" mode="widthFix" src="{{item}}"></image>
+    </view>
+  </view>
+  <!-- 预约按钮 -->
+  <view class='reserve'>
+    <view class="left">
+      <view class="original">原价：¥3699.00</view>
+      <view class='deplete'>实付：
+        <text>¥{{total}}</text>
+      </view>
+    </view>
+    <view class="btn {{canPay == false ? 'active' : ''}}" bindtap='buySpecial'>立即购买</view>
+  </view>
+</view>
+
+<view class="share" bindtap="backHome" wx:if="{{shareTag == true}}">
+  <image src="../../images/back_home.png"></image>
+</view>

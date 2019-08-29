@@ -1,0 +1,239 @@
+/* pages/science/science.wxss */
+
+.head {
+  width: 100%;
+  height: 92rpx;
+  background: #fff;
+  position: fixed;
+  top: 0;
+  z-index: 99;
+}
+
+.head .address {
+  height: 100%;
+  /* padding-left: 43rpx; */
+  display: flex;
+  align-items: center;
+  font-size: 30rpx;
+  color: #333;
+}
+
+.head .address .dia {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  height: 100%;
+}
+
+.head .address .dia:nth-of-type(1) {
+  position: relative;
+}
+
+.address .dia:nth-of-type(1)::after {
+  position: absolute;
+  display: block;
+  content: "";
+  width: 2rpx;
+  height: 60rpx;
+  background: #f2f2f2;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  margin: auto;
+}
+
+.address .img1 {
+  width: 28rpx;
+  height: 28rpx;
+}
+
+.address .location {
+  margin: 0 21rpx;
+}
+
+.address .img2 {
+  width: 17rpx;
+  height: 30rpx;
+  transform: rotate(90deg);
+  transition: all 200ms ease;
+}
+
+.address .img2.active {
+  transform: rotate(-90deg);
+}
+
+/* 弹窗 */
+
+.shadow {
+  width: 100%;
+  height: 0;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 92rpx;
+  margin: auto;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 99;
+  display: flex;
+}
+
+.shadow.active {
+  height: 100%;
+}
+
+.wrap {
+  width: 50%;
+  height: 0;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+  transition: all 200ms ease;
+}
+
+.wrap.active {
+  height: 201rpx;
+}
+
+.wrap.theme {
+  height: 0;
+  display: initial;
+}
+.wrap.theme.active{
+  /* height: 403rpx; */
+  overflow-y: scroll;
+}
+
+.wrap .list {
+  width: 100%;
+  height: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30rpx;
+  color: #666;
+  position: relative;
+}
+
+.wrap.active .list.active{
+  position: relative;
+  color: #FFB451;
+}
+
+.wrap.active .list.active::before{
+  position: absolute;
+  display: block;
+  content: "";
+  width: 12rpx;
+  height: 100rpx;
+  background: #FFB451;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+}
+
+.wrap .list:nth-of-type(1)::after, .wrap.theme .list::after {
+  position: absolute;
+  content: "";
+  display: block;
+  width: 315rpx;
+  height: 2rpx;
+  background: #f2f2f2;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+}
+
+.wrap.theme .list:last-of-type:after {
+  height: 0;
+}
+
+.wrap.theme .list {
+  height: 100rpx;
+}
+
+.img_box {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 122rpx;
+}
+
+.img_box.active {
+  position: fixed;
+  left: 0;
+  right: 0;
+  /* bottom: 0; */
+}
+
+.img_box .box {
+  position: relative;
+  height: 276rpx;
+  margin-bottom: 26rpx;
+}
+
+.img_box .box:last-of-type {
+  margin-bottom: 0;
+}
+
+.img_box .box .img1 {
+  width: 690rpx;
+  height: 276rpx;
+  border-radius: 12rpx;
+  /* background: #cdcdcd; */
+}
+
+.box .img2 {
+  position: absolute;
+  left: 40rpx;
+  top: -6rpx;
+}
+
+.img_box .box .img2 image {
+  width: 196rpx;
+  height: 42rpx;
+}
+
+.img_box .box .img2 text {
+  height: 42rpx;
+  line-height: 42rpx;
+  text-align: center;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  margin: auto;
+  font-size: 24rpx;
+  font-family: NotoSansHans-Regular;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 1);
+  text-shadow: 0px 1rpx 1rpx rgba(0, 0, 0, 0.4);
+}
+
+.img_box .box .rese {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 160rpx;
+  height: 50rpx;
+}
+
+.no{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #B2B2B2;
+  font-size: 28rpx;
+  margin-top: 300rpx;
+}
+.no image{
+  width: 300rpx;
+  height: 311rpx;
+  margin-bottom: 39rpx;
+}

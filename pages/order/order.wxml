@@ -1,0 +1,70 @@
+<!--pages/order/order.wxml-->
+<import src ="../../template/loading.wxml"/>
+<view class='order'>
+  <!-- <view class='tab'>
+    <view class="tab_btn {{tabIndex == index ? 'active' : ''}}" data-status='{{item.status}}' data-index='{{index}}' bindtap='tab' wx:for="{{tabList}}">{{item.name}}</view>
+  </view>
+  <view class='full'></view> -->
+
+  <swiper duration="300" wx:if="{{list.length > 0}}" class='swiper' style="height:{{height}}px" current='{{tabIndex}}'>
+    <swiper-item catchtouchmove="stopTouchMove">
+      <scroll-view scroll-y='true' style="height:{{height}}px" bindscrolltolower='lower' class='swiper_view'>
+        <view class='list' wx:for="{{list}}">
+          <view class='info'> 
+            <view>{{item.rechargeGoodsName}}</view>
+            <!-- <view class='pseudo'>原价：¥{{(item.rechargeGoodsPrice)/100}}</view> -->
+            <view class='pseudo'>支付金额：¥{{(item.realpayAmount)/100}}</view>
+            <view class='pseudo'>支付时间：{{item.time}}</view>
+          </view>
+          <view class='status'>
+            <view class='mode' wx:if="{{item.rechargeOrderStatus == '200' }}">已支付</view>
+            <view class='mode dfk' wx:if="{{item.rechargeOrderStatus == '0' }}">待支付</view>
+          </view>
+        </view>
+        <template wx:if="{{more == 'true'}}" is="loading" />
+      </scroll-view>
+    </swiper-item>
+
+    <!-- 待付款 -->
+    <swiper-item catchtouchmove="stopTouchMove">
+      <scroll-view scroll-y='true' style="height:{{height}}px" bindscrolltolower='lower'>
+        <view class='list' wx:for="{{list}}">
+          <view class='info'> 
+            <view>{{item.rechargeGoodsName}}</view>
+            <view class='pseudo'>原价：¥{{(item.rechargeGoodsPrice)/100}}</view>
+            <view class='pseudo'>实付：¥{{(item.realpayAmount)/100}}</view>
+            <view class='pseudo'>下单日期：{{item.time}}</view>
+          </view>
+          <view class='status'>
+            <view class='mode dfk'>待付款</view>
+            <!-- <view class='buy'>再次购买</view> -->
+          </view>
+        </view>
+        <template wx:if="{{more == 'true'}}" is="loading" />
+      </scroll-view>
+    </swiper-item>
+
+    <!-- 已完成 -->
+    <swiper-item catchtouchmove="stopTouchMove">
+      <scroll-view scroll-y='true' style="height:{{height}}px" bindscrolltolower='lower'>
+        <view class='list' wx:for="{{list}}">
+          <view class='info'> 
+            <view>{{item.rechargeGoodsName}}</view>
+            <view class='pseudo'>原价：¥{{(item.rechargeGoodsPrice)/100}}</view>
+            <view class='pseudo'>实付：¥{{(item.realpayAmount)/100}}</view>
+            <view class='pseudo'>下单日期：{{item.time}}</view>
+          </view>
+          <view class='status'>
+            <view class='mode'>已完成</view>
+          </view>
+        </view>
+        <template wx:if="{{more == 'true'}}" is="loading" />
+      </scroll-view>
+    </swiper-item>
+  </swiper>
+
+  <view class="no" wx:else>
+    <image src='{{image_cache}}yuyue_time_blank.png'></image>
+    <view>暂无订单信息~</view>
+  </view>
+</view>

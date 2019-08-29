@@ -1,0 +1,72 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/reserve/reserve",
+    "pages/my/my",
+    "pages/authorize/authorize",
+    "pages/fightgroup/fightgroup",
+    "pages/classpoint/classpoint",
+    "pages/exchange/exchange",
+    "pages/storedetail/storedetail",
+    "pages/lesson/lesson",
+    "pages/detail/detail",
+    "pages/themedetail/themedetail",
+    "pages/lessondetail/lessondetail",
+    "pages/webview/webview",
+    "pages/record/record",
+    "pages/recharge/recharge",
+    "pages/baby/baby",
+    "pages/edit/edit",
+    "pages/order/order",
+    "pages/recorddetail/recorddetail",
+    "pages/invite/invite",
+    "pages/schedule/schedule",
+    "pages/experience/experience",
+    "pages/writeoff/writeoff",
+    "pages/science/science",
+    "pages/success/success",
+    "pages/agreement/agreement",
+    "pages/special/special",
+    "pages/service/service"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "backgroundColor": "#F2F2F2",
+    "navigationBarBackgroundColor": "#FFB451",
+    "navigationBarTitleText": "体游科学实验室",
+    "navigationBarTextStyle": "black",
+    "enablePullDownRefresh": false
+  },
+  "tabBar": {
+    "color": "#262626",
+    "selectedColor": "#1A1A1A",
+    "borderStyle": "black",
+    "backgroundColor": "#fff",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "images/home.png",
+        "selectedIconPath": "images/homed.png"
+      },
+      {
+        "pagePath": "pages/reserve/reserve",
+        "text": "预约",
+        "iconPath": "images/reserve.png",
+        "selectedIconPath": "images/reserved.png"
+      },
+      {
+        "pagePath": "pages/my/my",
+        "text": "我的",
+        "iconPath": "images/my.png",
+        "selectedIconPath": "images/mine.png"
+      }
+    ]
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于获取附近的门店信息"
+    }
+  },
+  "sitemapLocation": "sitemap.json"
+}

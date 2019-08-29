@@ -1,0 +1,95 @@
+<!--pages/storedetail/storedetail.wxml-->
+<!-- 引入过滤器 -->
+<wxs module="filters" src="../../libs/filter/filter.wxs"></wxs>
+<view class='store'>
+  <view class='count'>
+    <view class='banner'>
+      <swiper class='swiper' indicator-dots="{{getTeachPlace.bannerImg.length > 1 ? true : false}}" circular indicator-color='#f5f5f5' indicator-active-color='#FFB451' autoplay='true'>
+        <swiper-item wx:for="{{getTeachPlace.bannerImg}}">
+          <image src='{{item}}'></image>
+        </swiper-item>
+      </swiper>
+    </view>
+
+    <view class='info'>
+      <view class='location' bindtap='navigation'>
+        <view class='top'>
+          <view class='name'>{{getTeachPlace.teachPlaceName}}</view>
+          <view class='distance' wx:if="{{getTeachPlace.distance > 1000}}">{{filters.toFixOne(getTeachPlace.distance/1000)}}km</view>
+          <view class='distance' wx:else>{{getTeachPlace.distance}}m</view>
+        </view>
+        <view class='bot'>
+          <image src='../../images/location.png'></image>
+          {{getTeachPlace.cityName}}{{getTeachPlace.districtName}}{{getTeachPlace.detailAddress}}
+        </view>
+        <image class='arrow' src='../../images/user_icon_more.png'></image>
+      </view>
+      <view class='phone' bindtap='phoneCall' data-phone='{{getTeachPlace.contactPhone}}'>{{getTeachPlace.contactPhone}}</view>
+    </view>
+  </view>
+
+
+  <!-- 日历 -->
+
+  <view class="wrap {{tabFixed == true ? 'active' : ''}}">
+    <scroll-view class='weekList' scroll-x="true">
+      <view class="week {{enoughDate == item.fullDate ? 'active' : ''}}" bindtap='changeTab' data-date='{{item.fullDate}}' wx:for="{{dateList}}" data-current='{{index}}'>
+        <view class='c1'>{{item.week}}</view>
+        <view class='c2'>{{ item.day}}</view>
+        <view class='mk' wx:if="{{item.maxPeople && item.maxPeople == item.reservePeople}}">满课</view>
+        <view class='no' wx:if="{{!item.maxPeople}}">无</view>
+        <view class='cz' wx:if="{{item.maxPeople && item.maxPeople - item.reservePeople >= 5}}">充足</view>
+        <view class='remain' wx:if="{{item.maxPeople && item.maxPeople - item.reservePeople < 5 && item.maxPeople - item.reservePeople > 0}}">剩余{{item.maxPeople - item.reservePeople}}</view>
+      </view>
+    </scroll-view>
+  </view>
+
+  <view class='fill' wx:if="{{tabFixed == true}}"></view>
+
+  <view class='img_box' wx:if="{{courseList.length > 0}}">
+    <!-- <view class='box' bindtap='lessondetail' data-index='{{index}}' data-name='{{item.courseName}}' data-id='{{item.courseId}}' wx:for="{{courseList}}">
+      <image class='img1' src="{{item.coverImg}}"></image> -->
+    <!-- <view class='img2'>
+        <image src='{{image_cache}}public_lab_a.png'></image>
+        <text>冰河世纪系列</text>
+      </view> -->
+    <!-- <image catchtap='reserve' class='rese' src='{{image_cache}}btn_yuyue.png'></image> -->
+    <!-- </view> -->
+    <view class="course" bindtap='lessondetail' data-index='{{index}}' data-id='{{items.scheduleId}}' wx:for="{{courseList}}" wx:for-item="items">
+      <view class="head">
+        <image class="cover" src="{{items.courseLogoImg}}"></image>
+        <view class="middle">
+          <view class="name">{{items.courseName}}</view>
+          <view class="time">
+            <image src="../../images/yuyue_icon_time.png"></image>
+            <view class="timedate">{{filters.split(items.classBeginTime,':')[0]}}:{{filters.split(items.classBeginTime,':')[1]}} - {{filters.split(items.classEndTime,':')[0]}}:{{filters.split(items.classEndTime,':')[1]}}</view>
+          </view>
+          <view class="age">
+            <image src="../../images/yuyue_icon_baby.png"></image>
+            <view class="yearsold">推荐 {{items.minAge}} - {{items.maxPeople}}岁</view>
+          </view>
+        </view>
+      </view>
+      <view class="reserve">
+        <view class="time">
+          <view class="name">预约截止时间：</view>
+          <view class="sj">{{filters.split(items.scheduleDate,'-')[1]}}-{{filters.split(items.scheduleDate,'-')[2]}} {{filters.split(items.reserveEndTime,':')[0]}}:{{filters.split(items.reserveEndTime,':')[1]}}</view>
+        </view>
+        <view class="btn">预约</view>
+      </view>
+      <view class="icon">
+        <image src="../../images/tykxsys.png"></image>
+      </view>
+    </view>
+  </view>
+
+  <view class='nothing' wx:else>
+    <image src='{{image_cache}}yuyue_time_blank.png'></image>
+    <view>老师正在努力排课中~</view>
+  </view>
+
+</view>
+
+<view class="share" bindtap="backHome" wx:if="{{shareTag == true}}">
+  <image src="../../images/back_home.png"></image>
+</view>

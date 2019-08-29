@@ -1,0 +1,84 @@
+<!--index.wxml-->
+<view class="home">
+  <!-- swiper -->
+  <view class='swiper-warp'>
+    <view class='swiper-1'></view>
+    <view class='swiper-2'></view>
+    <swiper autoplay duration="{{duration}}" interval="{{interval}}" circular previous-margin="{{leftMargin}}" next-margin="{{rightMargin}}" bindchange="handleChange">
+      <block wx:for="{{imgUrls}}">
+        <swiper-item bindtap="adver" data-url="{{item.advUrl}}">
+          <image src="{{item.advImg}}" class="slide-image {{currentIndex == index ? 'active': ''}}" />
+        </swiper-item>
+      </block>
+    </swiper>
+    <view class="dots" wx:if="{{imgUrls.length > 1}}">
+      <block wx:for="{{imgUrls}}" wx:key="unique">
+        <view class="dot{{index == currentIndex ? ' active' : ''}}"></view>
+      </block>
+    </view>
+    <!-- <view class="imageCount">{{currentIndex+1}}/{{imgUrls.length}}</view> -->
+  </view>
+  <!-- tab -->
+  <view class='tab'>
+    <view class='tabList' bindtap='science'>
+      <image class='icon' src="../../images/1.png"></image>
+      <view class='text'>科学课</view>
+    </view>
+    <view class='tabList' bindtap="tip">
+      <image class='icon' src="../../images/2.png"></image>
+      <view class='text'>优惠券</view>
+    </view>
+    <view class='tabList' bindtap="tip">
+      <image class='icon' src="../../images/3.png"></image>
+      <view class='text'>活动</view>
+    </view>
+    <view class='tabList' bindtap='point'>
+      <image class='icon' src="../../images/4.png"></image>
+      <view class='text'>教学点</view>
+    </view>
+  </view>
+  <!-- 小banner -->
+  <view class='small_banner' bindtap='special' data-url='{{adBanner[0].advUrl}}'>
+    <image class='img1' src="{{adBanner[0].advImg}}"></image>
+    <!-- <image class='img2' src="{{image_cache}}home_hdrk_go1.png"></image>
+    <image class='img3' src="{{image_cache}}home_hdrk_go2.png"></image> -->
+  </view>
+
+  <!-- 热门推荐 -->
+  <view class='boutique'>
+    <view class='title'>
+      <text class='literal'>热门推荐</text>
+      <!-- <image class='more' mode="aspectFit" src='../../images/btn_more.png'></image> -->
+    </view>
+    <view class='img_box'>
+      <view class='box' wx:for="{{getCourseListByPick}}" bindtap='lessondetail' data-id='{{item.courseId}}'>
+        <image class='img1' src="{{item.coverImg}}"></image>
+        <!-- <view class='img2'>
+          <image src='{{image_cache}}public_lab_a.png'></image>
+          <text>冰河世纪系列</text>
+        </view> -->
+        <!-- <image catchtap='reserve' class='rese' src='{{image_cache}}btn_yuyue.png'></image> -->
+      </view>
+    </view>
+  </view>
+
+  <!-- 主题课程 -->
+  <view class='boutique theme'>
+    <view class='title'>
+      <text class='literal'>主题系列</text>
+      <!-- <image class='more' mode="aspectFit" src='../../images/btn_more.png'></image> -->
+    </view>
+    <view class='theme_content'>
+      <view class='theme_list' wx:for="{{courseThemeList}}" bindtap='capdetail' data-id='{{item.themeId}}'>
+        <image mode='aspectFit' src='{{item.coverImg}}'></image>
+        <view class='bot'>
+          <view>{{item.themeName}}</view>
+          <!-- <view>共有课程：{{item.courseNum}}节</view> -->
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+
+
+<add-tips text="点击「添加到我的小程序」" duration="" />

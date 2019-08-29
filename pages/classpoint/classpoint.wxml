@@ -1,0 +1,45 @@
+<!--pages/classpoint/classpoint.wxml-->
+<import src ="../../template/loading.wxml"/>
+<wxs module="filters" src="../../libs/filter/filter.wxs"></wxs>
+<view class='point'>
+  <view class='head'>
+    <view class='address' bindtap='dialog'>
+      <image class='img1' src='../../images/location.png'></image>
+      <view class='location'>{{city}}<text wx:if="{{district}}">·</text>{{district}}</view>
+      <image class="img2 {{show == 'true' ? 'active' : ''}}" src='../../images/user_icon_more.png'></image>
+    </view>
+  </view>
+
+  <!-- list -->
+  <view class='wrap'>
+    <view class='list' wx:for="{{classList}}" data-id='{{item.teachPlaceId}}' data-name='{{item.teachPlaceName}}' bindtap='detail'>
+      <image class='icon' src='{{item.coverImg}}'></image>
+      <view class='right'>
+        <view class='cont_1'>
+          <view class='name'>{{item.teachPlaceName}}</view>
+          <view class='distance' wx:if="{{item.distance > 1000}}">{{filters.toFixOne(item.distance/1000)}}km</view>
+          <view class='distance' wx:else>{{item.distance}}m</view>
+        </view>
+        <view class='cont_2'>
+          <image class='place' src='../../images/location.png'></image>
+          <view class='wz'>{{item.cityName}}{{item.districtName}}{{item.detailAddress}}</view>
+        </view>
+      </view>
+    </view>
+    <template wx:if="{{more == 'true'}}" is="loading" />
+  </view>
+
+  <!-- 区域列表 南山区 福田区 -->
+  <view class="shadow {{show == 'true' ? 'active' : ''}}" bindtap='dialog'>
+    <view class='district' catchtap='stop'>
+      <view class='city'>{{city}}</view>
+      <view class='wrap_dis'>
+        <view class="list {{selectIndex == index ? 'active' : ''}}" data-index='{{index}}' data-districtcode='{{item.districtCode}}' data-districtcame='{{item.districtName}}' wx:for="{{districtList}}" bindtap='select'>{{item.districtName}}</view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<view class="share" bindtap="backHome" wx:if="{{shareTag == true}}">
+  <image src="../../images/back_home.png"></image>
+</view>

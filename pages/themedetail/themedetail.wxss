@@ -1,0 +1,232 @@
+/* pages/themedetail/themedetail.wxss */
+@import '../../wxParse/wxParse.wxss';
+
+.wxParse-img {
+  /* margin-top:20rpx; */
+  display: block;
+  position: relative;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.wxParse-p {
+  text-indent: 2em;
+  /* margin-top:20rpx; */
+  color: #333;
+  line-height: 50rpx;
+  font-size: 26rpx;
+  padding: 0 30rpx 30rpx;
+  text-align: justify;
+}
+
+.wxParse-inline {
+  font-size: 26rpx;
+  color: #333;
+}
+
+/* view {
+  overflow: initial;
+} */
+
+/* 富文本结束 */
+
+page{
+  overflow-x: hidden;
+}
+
+.wrap {
+  position: relative;
+}
+
+.swiper {
+  width: 100%;
+  height: 400rpx;
+}
+
+.swiper image {
+  width: 100%;
+  height: 100%;
+}
+
+.tab {
+  box-sizing: border-box;
+  width: 100%;
+  height: 92rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30rpx;
+  color: #999;
+  background: #fff;
+  position: relative;
+}
+
+.tab::after {
+  display: block;
+  content: '';
+  width: 100%;
+  height: 2rpx;
+  background: rgba(242, 242, 242, 1);
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  margin: auto;
+  transform: scaleY(0.5);
+}
+
+.tab.active {
+  position: fixed;
+  top: 0;
+  z-index: 99;
+}
+
+.tab .tabname {
+  width: 50%;
+  height: 100%;
+  line-height: 92rpx;
+  text-align: center;
+}
+
+.tab .tabname:nth-of-type(1) {
+  /* margin-right: 227rpx; */
+}
+
+.tab .tabname.active {
+  color: #333;
+  position: relative;
+}
+
+.tab .tabname.active::after {
+  display: block;
+  content: '';
+  width: 80rpx;
+  height: 4rpx;
+  background: #ffb451;
+  border-radius: 2rpx;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 20rpx;
+  margin: auto;
+  z-index: 100；;
+}
+
+.remedy {
+  width: 100%;
+  height: 92rpx;
+}
+
+/* 相关课程 */
+
+.swiper_tab {
+  height: auto;
+}
+
+.swiper_tab swiper-item {
+  height: auto;
+}
+
+.theme_info {
+  width: 750rpx;
+  background: #fff;
+  /* overflow: hidden; */
+}
+
+.relate {
+  width: 750rpx;
+  padding: 36rpx 0 38rpx;
+  background: #f5f5f5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.reserve_list {
+  position: relative;
+  width: 690rpx;
+  height: 282rpx;
+  margin: 0 auto 36rpx;
+  overflow: hidden;
+  background-color: transparent;
+}
+
+.reserve_list:last-of-type {
+  margin-bottom: 0;
+}
+
+.reserve_list .cont {
+  width: 690rpx;
+  height: 282rpx;
+  border-radius: 12rpx;
+}
+
+.reserve_list .tag1 {
+  position: absolute;
+  left: 40rpx;
+  top: -6rpx;
+  width: 196rpx;
+  height: 42rpx;
+}
+
+.reserve_list .tag1 image {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 196rpx;
+  height: 42rpx;
+}
+
+.reserve_list .tag1 text {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 196rpx;
+  height: 42rpx;
+  font-size: 24rpx;
+  font-family: NotoSansHans-Regular;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 1);
+  text-shadow: 0px 1rpx 1rpx rgba(0, 0, 0, 0.4);
+  text-align: center;
+  line-height: 42rpx;
+}
+
+/* idea */
+
+.idea {
+  width: 100%;
+  overflow-x: hidden;
+  height: 100%;
+}
+
+.idea .theme_info {
+  position: absolute;
+  transform: translate(-100%, 0px) translateZ(0px);
+  will-change: transform;
+  transition: all 300ms ease;
+  overflow: hidden;
+  /* display: none; */
+}
+
+.idea .theme_info.active {
+  width: 100%;
+  margin: 0 auto;
+  transform: translate(0%, 0px) translateZ(0px);
+  /* display: block; */
+}
+
+.idea .relate {
+  /* position: absolute; */
+  transform: translate(100%, 0px) translateZ(0px);
+  will-change: transform;
+  transition: all 300ms ease;
+  overflow: hidden;
+  /* display: none; */
+}
+
+.idea .relate.active {
+  transform: translate(0%, 0px) translateZ(0px);
+  /* display: block; */
+}

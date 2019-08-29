@@ -1,0 +1,72 @@
+<!--pages/lesson/lesson.wxml预约课程-->
+<view class="lesson {{isIpx == true ? 'isIpx' : ''}}">
+  <!-- 广告 -->
+  <view class='ad_banner' bindtap='special' data-url='{{banner[0].advUrl}}'>
+    <view class='ad' style="background-image:url('{{banner[0].advImg}}');background-size:100% 100%;"></view>
+  </view>
+
+  <!-- 课程预约 -->
+  <view class='content' style="height: {{contentheight}}px">
+    <!-- 左边选择地点区域 -->
+    <view class='address'>
+      <scroll-view style="height: {{contentheight}}px" scroll-y="true">
+        <view class='address_list' wx:for="{{list}}" wx:for-item="item_area" wx:for-index="index_area">
+          <view class='title'>{{item_area.districtName}}</view>
+          <view class='shop'>
+            <view bindtap='select' data-id='{{item_shop.teachPlaceId}}' data-address='{{item_shop.cityName + item_shop.districtName + item_shop.detailAddress}}' data-index_area="{{index_area}}" data-index_shop="{{index_shop}}" class="shop_name {{areaId == item_shop.teachPlaceId ? 'active' : ''}}"
+              wx:for="{{item_area.teachLocation}}" wx:for-item="item_shop" wx:for-index="index_shop">{{item_shop.teachPlaceName}}</view>
+          </view>
+        </view>
+      </scroll-view>
+    </view>
+    <!-- 右边课程预约 -->
+    <view class='lesson_list'>
+      <view class='location'>
+        <image src='../../images/location.png'></image>
+        <view class='place'>{{address}}</view>
+      </view>
+      <!-- 商铺课程 -->
+      <view class='shop_lesson'>
+        <scroll-view wx:if="{{contentList.length > 0}}" style="height: {{screenHeight}}px;" bindscrolltolower='lower' scroll-y="true">
+          <view class="indetail {{scheduleId == item.scheduleId ? 'active' : ''}}" data-maxpeople='{{item.maxPeople}}' data-reservePeople='{{item.reservePeople}}' data-time="{{item.scheduleDate + ' ' + item.reserveEndTime}}" data-id='{{item.scheduleId}}' data-index='{{index}}'
+            wx:for="{{contentList}}" bindtap='choose'>
+            <view class='info'>
+              <view>
+                <image class='icon' src='../../images/yuyue_icon_riqi.png'></image>
+                {{item.time}}
+              </view>
+              <view>
+                {{item.classBeginTime}}-{{item.classEndTime}}
+                <image class='icon' src='../../images/yuyue_icon_time.png'></image>
+              </view>
+              <view>
+                {{item.classRoomName}}
+                <image class='icon' src='../../images/yuyue_icon_jiaoshi.png'></image>
+              </view>
+            </view>
+            <view class='limit'>
+              <view class='radius'>{{item.minAge}}-{{item.maxAge}}岁</view>
+              <view class="num {{item.reservePeople == item.maxPeople ? 'active' : ''}}">
+                <view>报名人数：</view>
+                <view>{{item.reservePeople}}/{{item.maxPeople}}</view>
+              </view>
+            </view>
+          </view>
+        </scroll-view>
+        <view class='no' style="height: {{screenHeight}}px;" wx:if="{{contentList.length == 0}}">
+          <image src='{{image_cache}}yuyue_time_blank.png'></image>
+          <view>老师正在努力排课中~</view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 底部tab -->
+    <view class="tab {{isIpx == true ? 'isIpx' : ''}}">
+      <view class='tab-l'>
+        <!-- <view>趣动旅程</view>
+        <view>06/22 18:00</view> -->
+      </view>
+      <view class='btn' bindtap='sure'>确认</view>
+    </view>
+  </view>
+</view>

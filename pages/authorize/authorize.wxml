@@ -1,0 +1,13 @@
+<view class="container authorize">
+  <image class="logo" src="{{image_cache}}logo.png" mode="widthFix" />
+  <button wx:if="{{userinfo == 'true'}}" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo" class="userinfo mini-btn">
+    <text>登录</text>
+  </button>
+  <button wx:if="{{userinfo != 'true' && phoneNum == 'true'}}" open-type='getPhoneNumber' bindgetphonenumber="bindGetPhoneNumber" class="phone mini-btn">
+    <text>手机号授权</text>
+  </button>
+
+  <button wx:if="{{logging == true}}" class="phone mini-btn">
+    <text>登录中...</text>
+  </button>
+</view>

@@ -1,0 +1,46 @@
+<!--pages/science/science.wxml-->
+<import src ="../../template/loading.wxml"/>
+<view class='science'>
+  <view class='head'>
+    <view class='address' bindtap='dialog'>
+      <view class='dia' bindtap='tab1'>
+        <view class='location'>{{courseName ? courseName : '课程分类'}}</view>
+        <image class="img2 {{dialog1 == true ? 'active' : ''}}" src='../../images/user_icon_more.png'></image>
+      </view>
+      <view class='dia' bindtap='tab2'>
+        <view class='location'>{{themeName ? themeName : '主题系列'}}</view>
+        <image class="img2 {{dialog2 == true ? 'active' : ''}}" src='../../images/user_icon_more.png'></image>
+      </view>
+    </view>
+  </view>
+
+  <view class="shadow {{dialog1 == true || dialog2 == true ? 'active' : ''}}" bindtap='cancel'>
+    <view class="wrap {{dialog1 == true ? 'active' : ''}}">
+      <!-- 课程分类 -->
+      <view class="list {{courseType == item.id ? 'active' : ''}}" data-name='{{item.name}}' data-id='{{item.id}}' catchtap='select1' wx:for="{{tab1List}}">{{item.name}}</view>
+    </view>
+    <view class="wrap theme {{dialog2 == true ? 'active' : ''}}" style="height:{{dialog2 == true ? height : 0}}rpx">
+      <!-- 主题系列 -->
+      <view class="list {{themeId == item.themeId ? 'active' : ''}}" catchtap='select2' wx:for="{{tab2List}}" data-name='{{item.themeName}}' data-id='{{item.themeId}}'>{{item.themeName}}</view>
+    </view>
+  </view>
+
+
+  <view class="img_box {{dialog1 == true || dialog2 == true ? 'active' : ''}}" wx:if="{{lessonList.length > 0}}">
+    <view class='box' bindtap='lessondetail' data-id='{{item.courseId}}' data-index='{{index}}' wx:for="{{lessonList}}">
+      <image class='img1' src="{{item.coverImg}}"></image>
+      <!-- <view class='img2'>
+        <image src='{{image_cache}}public_lab_a.png'></image>
+        <text>冰河世纪系列</text>
+      </view> -->
+      <!-- <image catchtap='reserve' class='rese' src='{{image_cache}}btn_yuyue.png'></image> -->
+    </view>
+    <template wx:if="{{more == 'true'}}" is="loading" />
+  </view>
+
+  <view class='no' wx:if="{{lessonList.length == 0}}">
+    <image src='{{image_cache}}yuyue_time_blank.png'></image>
+    <view>老师正在努力排课中~</view>
+  </view>
+
+</view>

@@ -1,0 +1,32 @@
+/* pages/success/success.wxss */
+
+page {
+  background: #fff;
+}
+
+.img {
+  display: block;
+  width: 574rpx;
+  height: 498rpx;
+  margin: 180rpx auto 220rpx;
+}
+
+.box {
+  display: flex;
+  justify-content: center;
+}
+
+.box .list {
+  width: 222rpx;
+  height: 62rpx;
+  color: #faae4b;
+  border: 2rpx solid rgba(250, 174, 75, 1);
+  border-radius: 30rpx;
+  text-align: center;
+  line-height: 62rpx;
+  font-size: 30rpx;
+  font-weight: bold;
+}
+.box .list:nth-of-type(1){
+  margin-right: 118rpx;
+}

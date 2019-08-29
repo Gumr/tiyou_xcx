@@ -1,0 +1,30 @@
+<!--pages/baby/baby.wxml-->
+<!-- 引入过滤器 -->
+<wxs module="filters" src="../../libs/filter/filter.wxs"></wxs>
+<view class='baby'>
+  <!-- 宝宝信息 -->
+  <view class='babyList' wx:if="{{studentList.length > 0}}">
+    <view class='baby_box' wx:for="{{studentList}}" bindtap='select' data-id='{{item.studentId}}' data-name='{{item.studentName}}'>
+      <view class='left'>
+        <image class='icon' src='../../images/user_icon_baby3.png'></image>
+        <view class='name'>{{item.studentName}}</view>
+        <view class='message'>
+          <view>{{item.sex}}</view>
+          <view>{{item.birthday}}</view>
+          <view>{{item.relation}}</view>
+        </view>
+      </view>
+      <view class='edit' catchtap='edit' data-id='{{item.studentId}}' data-index='{{index}}'>编辑</view>
+    </view>
+  </view>
+
+  <view class="no" wx:else>
+    <image src='{{image_cache}}yuyue_time_blank.png'></image>
+    <view>暂无宝宝信息~</view>
+  </view>
+
+  <!-- 按钮 -->
+  <view class="bot {{isIpx == true ? 'isIpx' : ''}}">
+    <view class='add' bindtap='add'>+新增宝宝</view>
+  </view>
+</view>

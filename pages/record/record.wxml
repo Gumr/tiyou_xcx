@@ -1,0 +1,138 @@
+<!--pages/record/record.wxml-->
+<import src="../../template/loading.wxml" />
+<view class='record'>
+  <view class='calcu'>
+    <!-- <view class='info'>
+      <view class='box box2'>
+        <view class='img_box'>
+          <image src='{{image_cache}}yuyue_pbar_yixue.png'></image>
+          <view>{{learned}}</view>
+        </view>
+        <view class='name'>已用课时</view>
+      </view>
+    </view> -->
+    <!-- tab 全部 待上课 已上课 -->
+    <view class='tab'>
+      <view wx:for="{{tabList}}" data-index='{{index}}' data-staus='{{item.staus}}' bindtap='tab' class="{{tabIndex == index ? 'active' : ''}}">{{item.name}}</view>
+    </view>
+  </view>
+
+  <swiper class='swiper_tab' bindchange="bindChange" current="{{tabIndex}}" duration="300" style="height:{{height}}px">
+    <swiper-item>
+      <scroll-view scroll-y='true' style="height:{{height}}px" bindscrolltolower='lower' data-status="{{reserveStatus_1}}">
+        <view class='wrap' wx:if="{{list_1.length > 0}}">
+          <view class='card' wx:for="{{list_1}}" bindtap='reservedetail' data-id='{{item.reserveId}}'>
+            <view class="left active_1" wx:if="{{item.reserveStatus == '10'}}">
+              <image src='../../images/yuyue_icon_dkb.png'></image>
+              <view class='status'>待上课</view>
+              <view class='num'>{{item.reservePeople}}/{{item.maxPeople}}</view>
+            </view>
+            <view class="left active_2" wx:if="{{item.reserveStatus == '20'}}">
+              <image src='../../images/yuyue_icon_ywc.png'></image>
+              <view class='status'>已上课</view>
+              <view class='num'>{{item.reservePeople}}/{{item.maxPeople}}</view>
+            </view>
+            <view class="left active_3" wx:if="{{item.reserveStatus == '30' || item.reserveStatus == '31'}}">
+              <image src='../../images/yuyue_icon_wkb.png'></image>
+              <view class='status'>已取消</view>
+              <view class='num'>{{item.reservePeople}}/{{item.maxPeople}}</view>
+            </view>
+            <view class="left active_4" wx:if="{{item.reserveStatus == '40'}}">
+              <image src='../../images/yuyue_icon_wkb.png'></image>
+              <view class='status'>已关闭</view>
+              <view class='num'>{{item.reservePeople}}/{{item.maxPeople}}</view>
+            </view>
+            <view class='right'>
+              <view class='r1'>{{item.courseName}}</view>
+              <view class='r2'>{{item.districtName}}{{item.detailAddress}}</view>
+              <view class='r3'>
+                <image class='icon' src='../../images/yuyue_icon_time.png'></image>
+                {{item.time}} {{item.classBeginTime}} - {{item.classEndTime}}
+              </view>
+              <view class='r4'>
+                {{item.studentName}}（{{item.payType == '1' ? '课时' : '体验卡'}}）
+                <image class='icon' src='../../images/yuyue_icon_baby.png'></image>
+              </view>
+            </view>
+          </view>
+          <template wx:if="{{more_1 == 'true'}}" is="loading" />
+        </view>
+        <view class="no" wx:else>
+          <image src='{{image_cache}}yuyue_time_blank.png'></image>
+          <view>暂无信息~</view>
+        </view>
+      </scroll-view>
+    </swiper-item>
+    <!-- 待上课 -->
+    <swiper-item>
+      <scroll-view scroll-y='true' style="height:{{height}}px" bindscrolltolower='lower' data-status="{{reserveStatus_2}}">
+        <view class='wrap' wx:if="{{list_2.length > 0}}">
+          <view class='card' wx:for="{{list_2}}" bindtap='reservedetail' data-id='{{item.reserveId}}'>
+            <view class="left active_1">
+              <image src='../../images/yuyue_icon_dkb.png'></image>
+              <view class='status'>待上课</view>
+              <view class='num'>{{item.reservePeople}}/{{item.maxPeople}}</view>
+            </view>
+            <view class='right'>
+              <view class='r1'>{{item.courseName}}</view>
+              <view class='r2'>{{item.districtName}}{{item.detailAddress}}</view>
+              <view class='r3'>
+                <image class='icon' src='../../images/yuyue_icon_time.png'></image>
+                {{item.time}} {{item.classBeginTime}} - {{item.classEndTime}}
+              </view>
+              <view class='r4'>
+                {{item.studentName}}（{{item.payType == '1' ? '课时' : '体验卡'}}）
+                <image class='icon' src='../../images/yuyue_icon_baby.png'></image>
+              </view>
+            </view>
+          </view>
+          <template wx:if="{{more_2 == 'true'}}" is="loading" />
+        </view>
+        <view class="no" wx:else>
+          <image src='{{image_cache}}yuyue_time_blank.png'></image>
+          <view>暂无信息~</view>
+        </view>
+      </scroll-view>
+    </swiper-item>
+    <!-- 已完成 -->
+    <swiper-item>
+      <scroll-view scroll-y='true' style="height:{{height}}px" bindscrolltolower='lower' data-status="{{reserveStatus_3}}">
+        <view class='wrap' wx:if="{{list_3.length > 0}}">
+          <view class='card' wx:for="{{list_3}}" bindtap='reservedetail' data-id='{{item.reserveId}}'>
+            <view class="left active_4" wx:if="{{item.reserveStatus == '40'}}">
+              <image src='../../images/yuyue_icon_wkb.png'></image>
+              <view class='status'>已关闭</view>
+              <view class='num'>{{item.reservePeople}}/{{item.maxPeople}}</view>
+            </view>
+            <view class="left active_2" wx:if="{{item.reserveStatus == '20'}}">
+              <image src='../../images/yuyue_icon_ywc.png'></image>
+              <view class='status'>已上课</view>
+              <view class='num'>{{item.reservePeople}}/{{item.maxPeople}}</view>
+            </view>
+            <view class='right'>
+              <view class='r1'>{{item.courseName}}</view>
+              <view class='r2'>{{item.districtName}}{{item.detailAddress}}</view>
+              <view class='r3'>
+                <image class='icon' src='../../images/yuyue_icon_time.png'></image>
+                {{item.time}} {{item.classBeginTime}} - {{item.classEndTime}}
+              </view>
+              <view class='r4'>
+                {{item.studentName}}（{{item.payType == '1' ? '课时' : '体验卡'}}）
+                <image class='icon' src='../../images/yuyue_icon_baby.png'></image>
+              </view>
+            </view>
+          </view>
+          <template wx:if="{{more_3 == 'true'}}" is="loading" />
+        </view>
+        <view class="no" wx:else>
+          <image src='{{image_cache}}yuyue_time_blank.png'></image>
+          <view>暂无信息~</view>
+        </view>
+      </scroll-view>
+    </swiper-item>
+  </swiper>
+</view>
+
+<view class="share" style="top:10%" bindtap="backHome" wx:if="{{shareTag == true}}">
+  <image src="../../images/back_home.png"></image>
+</view>

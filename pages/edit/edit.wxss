@@ -1,0 +1,130 @@
+/* pages/edit/edit.wxss */
+
+page {
+  background: #fff;
+}
+
+.box:first-of-type {
+  margin-top: 38rpx;
+}
+
+.box {
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 690rpx;
+  height: 113rpx;
+  box-sizing: border-box;
+  padding: 0 80rpx 0 56rpx;
+  border-bottom: 2rpx solid #f2f2f2;
+  font-size: 30rpx;
+  color: #333;
+}
+
+.box:last-of-type {
+  border-bottom: none;
+}
+
+.box .enter{
+  height: 100%;
+  text-align: right;
+  color: #666;
+}
+
+.box .name {
+  position: relative;
+}
+
+.box .name::before {
+  display: block;
+  content: '';
+  width: 6rpx;
+  height: 28rpx;
+  background: #ffb451;
+  border-radius: 3rpx;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -26rpx;
+  margin: auto;
+}
+
+.box .value {
+  color: #666;
+  position: relative;
+}
+
+.bot {
+  width: 100%;
+  height: 98rpx;
+  position: fixed;
+  bottom: 0;
+  border-top: 2rpx solid #e6e6e6;
+  background: #fff;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.bot .add {
+  width: 300rpx;
+  height: 74rpx;
+  line-height: 74rpx;
+  text-align: center;
+  border-radius: 37rpx;
+  font-size: 36rpx;
+  color: #fff;
+  box-sizing: border-box;
+  margin: 0rpx 30rpx 0 auto;
+  background: linear-gradient(rgba(77, 214, 114, 1) 0%, rgba(49, 189, 91, 1) 100%);
+  box-shadow: 0px -2rpx 2rpx 0px rgba(160, 96, 10, 0.2) inset,
+              0px 2rpx 2rpx 0px rgba(255, 255, 255, 0.5) inset,
+              0px 4rpx 4rpx 0px rgba(40, 142, 13, 0.5);
+}
+
+.sex .value, .bir .value {
+  box-sizing: border-box;
+  height: 100%;
+  padding-right: 60rpx;
+  line-height: 113rpx;
+  margin-right: -60rpx;
+}
+
+.sex .value::after {
+  display: block;
+  content: '';
+  width: 0rpx;
+  height: 0rpx;
+  border-top: 13rpx solid #333;
+  border-left: 13rpx solid transparent;
+  border-right: 13rpx solid transparent;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0rpx;
+  margin: auto;
+}
+.sex .value.active::after{
+  border-top: none;
+  border-bottom: 13rpx solid #333;
+}
+
+.bir .value::after {
+  display: block;
+  content: '';
+  width: 0rpx;
+  height: 0rpx;
+  border-top: 13rpx solid #333;
+  border-left: 13rpx solid transparent;
+  border-right: 13rpx solid transparent;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0rpx;
+  margin: auto;
+}
+.bir .value.active::after{
+  border-top: none;
+  border-bottom: 13rpx solid #333;
+}

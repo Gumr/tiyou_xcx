@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "dialog": "../../components/dialog/dialog"
+  },
+  "navigationBarTitleText": "预约记录详情"
+}

@@ -1,0 +1,26 @@
+<!--pages/ exchange/exchange.wxml-->
+<view class='exchange'>
+  <view class='convert'>
+    <image class='icon' src='{{image_cache}}logo_small.png'></image>
+    <input class='ipt' placeholder='请输入兑换码' bindinput="enter" maxlength='20' placeholder-style="color:#CDCDCD;" />
+    <view class='explain'>
+      <view class='sm'>兑换规则</view>
+      <text>1. 每个兑换码，仅可使用1次，不可兑换现金，请在有效期之前兑换；\n2. 兑换后，原享有的会员权益不受兑换影响；\n3. 体游科学实验室保留活动最终解释权，并有权取消作弊用户的参与资格；\n4. 如有任何疑问，请联系客服。</text>
+      <view class='sm'>兑换示例</view>
+      <text class="example">示例“1-1a2a6ggh”；\n兑换码为数字、符号、字母组合，在“体游科学实验室”小程序点击“我的”-“兑换中心”兑换。</text>
+    </view>
+  </view>
+  <image src='{{image_cache}}user_duihuan_bg.png' class='img'></image>
+
+  <view class="btn {{isIpx == true ? 'isIpx' : ''}}">
+    <view class="btndh" bindtap="sure">确认兑换</view>
+  </view>
+</view>
+
+<!-- 弹窗 -->
+<view class="modal" wx:if="{{success}}">
+  <view class="succ">
+    <image src="../../images/yuehuan_img_suc.png"></image>
+    <view class="sure" bindtap="back">确定</view>
+  </view>
+</view>

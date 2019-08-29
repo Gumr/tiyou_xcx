@@ -1,0 +1,106 @@
+<!--pages/schedule/schedule.wxml-->
+<import src="../../template/loading.wxml" />
+<view class='schedule'>
+  <view class='calcu'>
+    <!-- tab待核销 已取消 已完成 -->
+    <view class='tab'>
+      <view wx:for="{{tabList}}" data-type='{{item.searchType}}' data-index='{{index}}' bindtap='tab' class="{{tabIndex == index ? 'active' : ''}}">{{item.name}}</view>
+    </view>
+  </view>
+
+
+  <swiper class='swiper_tab' wx:if="{{courseList.length > 0}}" current="{{tabIndex}}" duration="300" style="height:{{height}}px">
+    <swiper-item catchtouchmove="stopTouchMove">
+      <scroll-view scroll-y='true' style="height:{{height}}px" bindscrolltolower='lower'>
+        <view class='wrap'>
+          <view class='card' wx:for="{{courseList}}" bindtap='detail' data-id='{{item.scheduleId}}' data-status='{{item.scheduleStatus}}'>
+            <!-- 已开班 -->
+            <view class='left active_1' wx:if="{{item.scheduleStatus == '20'}}">
+              <image src='../../images/yuyue_icon_ykb.png'></image>
+              <view class='status'>已开班</view>
+              <view class='num'>{{item.reservePeople}}/{{item.maxPeople}}</view>
+            </view>
+            <!-- 待开班 -->
+            <view class='left active_2' wx:if="{{item.scheduleStatus == '10'}}">
+              <image src='../../images/yuyue_icon_dkb.png'></image>
+              <view class='status'>待开班</view>
+              <view class='num'>{{item.reservePeople}}/{{item.maxPeople}}</view>
+            </view>
+            <view class='right'>
+              <view class='r1'>{{item.teachPlaceName}}</view>
+              <view class='r2'>{{item.districtName}}{{item.detailAddress}}</view>
+              <view class='r3'>
+                <image class='icon' src='../../images/yuyue_icon_time.png'></image>
+                {{item.time}} {{item.classBeginTime}} - {{item.classEndTime}}
+              </view>
+              <view class='r4'>
+                {{item.courseName}}
+                <image class='icon' src='../../images/home_icon_kecheng.png'></image>
+              </view>
+            </view>
+          </view>
+          <template wx:if="{{more == 'true'}}" is="loading" />
+        </view>
+      </scroll-view>
+    </swiper-item>
+
+    <!-- 已取消 -->
+    <swiper-item catchtouchmove="stopTouchMove">
+      <scroll-view scroll-y='true' style="height:{{height}}px" bindscrolltolower='lower'>
+        <view class='wrap'>
+          <view class='card' wx:for="{{courseList}}" bindtap='detail' data-id='{{item.scheduleId}}' data-status='{{item.scheduleStatus}}'>
+            <view class='left active_3'>
+              <image src='../../images/yuyue_icon_wkb.png'></image>
+              <view class='status'>未开班</view>
+              <view class='num'>{{item.reservePeople}}/{{item.maxPeople}}</view>
+            </view>
+            <view class='right'>
+              <view class='r1'>{{item.teachPlaceName}}</view>
+              <view class='r2'>{{item.districtName}}{{item.detailAddress}}</view>
+              <view class='r3'>
+                <image class='icon' src='../../images/yuyue_icon_time.png'></image>
+                {{item.time}} {{item.classBeginTime}} - {{item.classEndTime}}
+              </view>
+              <view class='r4'>
+                {{item.courseName}}
+                <image class='icon' src='../../images/home_icon_kecheng.png'></image>
+              </view>
+            </view>
+          </view>
+          <template wx:if="{{more == 'true'}}" is="loading" />
+        </view>
+      </scroll-view>
+    </swiper-item>
+
+    <!-- 已完成 -->
+    <swiper-item catchtouchmove="stopTouchMove">
+      <scroll-view scroll-y='true' style="height:{{height}}px" bindscrolltolower='lower'>
+        <view class='wrap'>
+          <view class='card' wx:for="{{courseList}}" bindtap='detail' data-id='{{item.scheduleId}}' data-status='{{item.scheduleStatus}}'>
+            <view class='left active_3'>
+              <image src='../../images/yuyue_icon_ywc.png'></image>
+              <view class='status'>已完成</view>
+              <view class='num'>{{item.reservePeople}}/{{item.maxPeople}}</view>
+            </view>
+            <view class='right'>
+              <view class='r1'>{{item.teachPlaceName}}</view>
+              <view class='r2'>{{item.districtName}}{{item.detailAddress}}</view>
+              <view class='r3'>
+                <image class='icon' src='../../images/yuyue_icon_time.png'></image>
+                {{item.time}} {{item.classBeginTime}} - {{item.classEndTime}}
+              </view>
+              <view class='r4'>
+                {{item.courseName}}
+                <image class='icon' src='../../images/home_icon_kecheng.png'></image>
+              </view>
+            </view>
+          </view>
+          <template wx:if="{{more == 'true'}}" is="loading" />
+        </view>
+      </scroll-view>
+    </swiper-item>
+  </swiper>
+
+  <!-- 暂无数据 -->
+  <view class='not' wx:if="{{courseList.length == 0}}" style='height:{{height}}px'>暂无数据</view>
+</view>

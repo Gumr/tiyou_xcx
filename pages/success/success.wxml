@@ -1,0 +1,8 @@
+<!--pages/success/success.wxml-->
+<view class='success'>
+  <image class='img' src='{{image_cache}}yuyue_img_suc.png'></image>
+  <view class='box'>
+    <view class='list' bindtap='check'>查看记录</view>
+    <view class='list' bindtap='back'>返回首页</view>
+  </view>
+</view>

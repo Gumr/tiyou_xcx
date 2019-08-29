@@ -1,0 +1,95 @@
+<!--pages/fightgroup/fightgroup.wxml-->
+<!-- 引入过滤器 -->
+<wxs module="filters" src="../../libs/filter/filter.wxs"></wxs>
+<view class="fight">
+  <view class="arc">
+    <view class="radian"></view>
+    <view class="info">
+      <view class="head">
+        <image src="{{scheduleData.inviteAvatar}}"></image>
+        <view class="title">
+          <view class="desc1">这门课程很不错！</view>
+          <view class="desc2">
+            <view class="name">{{scheduleData.inviteNickName}}</view>
+            <view class="extra">邀请你的宝宝共同参加</view>
+          </view>
+        </view>
+      </view>
+      <!-- 课程信息 -->
+      <view class="courseinfo">
+        <image class="cover" src="{{scheduleData.courseLogoImg}}"></image>
+        <view class="related">
+          <view class="name">{{scheduleData.courseName}}</view>
+          <view class="time">
+            <image class="timeicon" src="../../images/yuyue_icon_time.png"></image>
+            <view class="timeinfo">{{filters.split(scheduleData.scheduleDate,'-')[1]}}-{{filters.split(scheduleData.scheduleDate,'-')[2]}} {{filters.split(scheduleData.classBeginTime,':')[0]}}:{{filters.split(scheduleData.classBeginTime,':')[1]}} - {{filters.split(scheduleData.classEndTime,':')[0]}}:{{filters.split(scheduleData.classEndTime,':')[1]}}</view>
+          </view>
+          <view class="place" bindtap='navigation'>
+            <view class="left">
+              <image src="../../images/location.png" class="placeicon"></image>
+              <view class="placeinfo">
+                <view class="store">{{scheduleData.teachPlaceName}}</view>
+                <view class="detail">{{scheduleData.detailAddress}}</view>
+              </view>
+            </view>
+            <image src="../../images/user_icon_more.png" class="arrow"></image>
+          </view>
+        </view>
+        <!-- 未成团 -->
+        <view class="status" style="background-color:{{color}}" wx:if="{{status == 1}}">未成团</view>
+        <!-- 待满班 -->
+        <view class="status" style="background-color:{{color}}" wx:if="{{status == 2}}">待满班</view>
+        <!-- 已满班 -->
+        <view class="status" style="background-color:{{color}}" wx:if="{{status == 3}}">已满班</view>
+        <!-- 停止预约 -->
+        <view class="status" style="background-color:{{color}}" wx:if="{{status == 4}}">停止预约</view>
+      </view>
+    </view>
+  </view>
+  <view class="wrap" wx:if="{{status != 4}}">
+    <!-- 进度条 -->
+    <view class='progre'>
+      <view class='situation'>开班情况</view>
+      <progress active="true" percent="{{scheduleData.reservePeople/scheduleData.maxPeople*100}}" stroke-width="6" border-radius="6" activeColor="{{color}}" backgroundColor="#F0F0F0">
+        <view style="left:{{scheduleData.reservePeople/scheduleData.maxPeople*100 > 94 ? '94' : scheduleData.reservePeople/scheduleData.maxPeople*100}}%;color:{{color}}" class='schedule'>{{scheduleData.reservePeople}}/{{scheduleData.maxPeople}}</view>
+      </progress>
+      <!-- 未成团 -->
+      <view class='botinfo' wx:if="{{status == 1}}">
+        <view class="wct">满
+          <text style="color:{{color}}">{{scheduleData.minPeople}}</text>人开班，还差
+          <text style="color:{{color}}">{{scheduleData.minPeople-scheduleData.reservePeople}}</text>人即可开班哦！</view>
+        <view>{{scheduleData.maxPeople}}</view>
+      </view>
+      <!-- 待满班 -->
+      <view class='botinfo' wx:if="{{status == 2}}">
+        <view class="dmb">课程已开班还剩最后
+          <text style="color:{{color}}">{{scheduleData.maxPeople-scheduleData.reservePeople}}</text>个名额哦！</view>
+        <view>{{scheduleData.maxPeople}}</view>
+      </view>
+      <!-- 已满班 -->
+      <view class='botinfo' wx:if="{{status == 3}}">
+        <view class="ymb" style="color:{{color}}">课程已满额，快去预约其他课程吧！</view>
+        <view>{{scheduleData.maxPeople}}</view>
+      </view>
+    </view>
+    <!-- 拼团人数 -->
+    <view class="group">
+      <view class="avatar" wx:for="{{headList}}" wx:key="item">
+        <image src="{{item.avatar ? item.avatar : ''}}"></image>
+      </view>
+    </view>
+    <!-- 说明 -->
+    <view class="explain">
+      <text>预约说明\n1.开班要求：该课程满3人开课；\n2.取消说明：课程开始前3小时即可取消；\n3.如未取消课程但又未到课，系统仍会扣除1.0课时；\n4.若未达到开班人数，系统将自动取消，并返还课时。</text>
+    </view>
+  </view>
+  <view class="no" wx:else>
+    <image src="{{image_cache}}yuyue_time_blank.png"></image>
+    <text>课程已结束您来晚啦~\n更多优质课程快去看看吧！</text>
+  </view>
+  <!-- 预约 -->
+  <view class="bot {{isIpx == true ? 'isIpx' : ''}}">
+    <view class="reserve" wx:if="{{status != 4}}" bindtap="sure">我要预约</view>
+    <view class="reserve" wx:else bindtap="reserve">预约其他课程</view>
+  </view>
+</view>
